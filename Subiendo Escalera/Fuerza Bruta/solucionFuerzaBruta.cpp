@@ -22,9 +22,11 @@ int main(int argc, char* argv[]){
 */
 
 
-
-// SOLUCION CASI
-
+/*
+SOLUCION CASI
+ejecutar: g++ -o i solucionFuerzaBruta.cpp
+	./i
+*/
 
 #include <iostream>
 #include <vector>
