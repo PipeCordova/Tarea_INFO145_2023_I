@@ -1,4 +1,4 @@
-# Instrucciones para ejecutar.
+# Instrucciones para ejecutar los codigos.
 
 # Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
 i) En el archivo solucionFuerzaBruta.cpp debe abrir la consola y escribir: make  
