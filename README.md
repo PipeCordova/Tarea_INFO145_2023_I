@@ -1,15 +1,20 @@
-# Tarea INFO145 2023
+# Tarea INFO145 2023  
+# Instrucciones para ejecutar
 
-# Instrucciones para ejecutar problema 1: Subiendo la Escalera
+# Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
+i) En el archivo solucionFuerzaBruta.cpp debe abrir la consola y escribir: make  
+ii) Escribir en la consola: ./prog1 r p  
+iii) Considere r y p numeros enteros  
 
-i) En el archivo main.cpp debe abrir la consola y escribir: make  
-ii) Escribir en la consola: ./prog1 r p      
+# Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
+i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make  
+ii) Escribir en la consola: ./prog2 r p  
 iii) Considere r y p numeros enteros  
   
-# Instrucciones para ejecutar problema 2: Ruta en Grafos Mediante Algoritmos Greedy
+# Problema 2: Ruta en Grafos Mediante Algoritmos Greedy  
 
-i) En el archivo main.cpp debe abrir la consola y escribir make  
-ii) Escribir en la consola: ./prog2 n k m    
+i) En el archivo solucionGrafos.cpp debe abrir la consola y escribir make  
+ii) Escribir en la consola: ./prog3 n k m  
 iii) Considere n,k,m numeros enteros  
   
  
