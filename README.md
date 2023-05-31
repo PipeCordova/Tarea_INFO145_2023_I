@@ -10,7 +10,7 @@ i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make
 ii) Escribir en la consola: ./prog2 r p  
 iii) Considere r y p numeros enteros  
   
-# Problema 2: Ruta en Grafos Mediante Algoritmos Greedy  
+# Problema 2: Ruta en Grafos Mediante Algoritmos Greedy.  
 
 i) En el archivo solucionGrafos.cpp debe abrir la consola y escribir make  
 ii) Escribir en la consola: ./prog3 n k m  
