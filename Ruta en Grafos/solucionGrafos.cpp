@@ -15,6 +15,6 @@ int main(int argc, char* argv[]){
     int k = atoi(argv[2]);
     int m = atoi(argv[3]);
     cout << "Ingreso n = " << n << " y k = " << k << " y m = " << m << endl;
-    cout << "¡¡Fin Solución!!" << endl;
+    cout << "¡Fin Solución!" << endl;
     return EXIT_SUCCESS;
 }
