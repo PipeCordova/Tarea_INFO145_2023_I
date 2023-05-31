@@ -1,4 +1,3 @@
-# Tarea INFO145 2023  
 # Instrucciones para ejecutar
 
 # Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
