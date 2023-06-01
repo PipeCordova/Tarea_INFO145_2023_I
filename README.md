@@ -2,8 +2,8 @@
 
 # Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
 i) En el archivo solucionFuerzaBruta.cpp debe abrir la consola y escribir: make  
-ii) Escribir en la consola: ./prog1 r p  
-iii) Considere r y p numeros enteros  
+ii) Escribir en la consola: ./prog1  
+iii) Se iniciará el programa. Se asumirá que ingresa números validos.
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
 i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make  
