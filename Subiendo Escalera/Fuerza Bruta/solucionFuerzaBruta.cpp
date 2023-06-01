@@ -8,7 +8,6 @@
 #include <cmath> // Para usar la funcion pow y log
 #include <stdlib.h> // Para los numeros randoms
 #include <algorithm> // Para utilizar el metodo sort
-
 using namespace std;
 
 vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones_rotos) {
