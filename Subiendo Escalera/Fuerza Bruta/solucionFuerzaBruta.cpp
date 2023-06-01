@@ -31,7 +31,8 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
         
         if(pos_actual == n){
             if(!forma_actual.empty() && forma_actual[0] == 0){
-                forma_actual.erase(forma_actual.begin()); // Eliminar el 0 al comienzo
+		// Eliminar el 0 al comienzo --> pop_back no sirve
+                forma_actual.erase(forma_actual.begin());
             }
             formas.push_back(forma_actual);
             continue; // si estas condiciones se cumplen se pasa a la sgte iteracion
