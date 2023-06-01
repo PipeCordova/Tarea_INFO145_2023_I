@@ -6,7 +6,7 @@ ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia
 iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
 iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
 # Comentario   
-En el main(...), hay una instrucción para imprimir los posibles caminos que tiene disponible nuestro héroe super Mario, si ud va a ejecutar el código con una entrada muy grande y no quiere ver en la pantalla los caminos, le recomendamos que comente desde la línea 117 hasta la 133.
+En el main(...), hay una instrucción para imprimir los posibles caminos que tiene disponible nuestro héroe super Mario, si ejecuta el código con una entrada muy grande y no quiere ver en la pantalla los caminos, le recomendamos que comente desde la línea 117 hasta la 133.
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
 i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make  
