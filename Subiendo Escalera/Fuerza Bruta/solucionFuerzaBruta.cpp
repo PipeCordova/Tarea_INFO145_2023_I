@@ -115,6 +115,8 @@ int main(int argc, char* argv[]){
     // Imprimir el número total de formas posibles
     cout << "Numero total de formas posibles: " << formas.size() << endl;
 
+    // Inicio posiblee comentario
+
     // Si hay 0 formas posibles, terminamos el programa, asi evitamos perder tiempo imprimiendo nada
     if(formas.size() == 0){
         cout << "No puede subir :c" << endl;
@@ -128,6 +130,9 @@ int main(int argc, char* argv[]){
             cout << endl;
         }
     }
+
+    // Fin posible comentario
+
     cout << "¡¡Fin Fuerza Bruta!!" << endl;
     return EXIT_SUCCESS;
 }
