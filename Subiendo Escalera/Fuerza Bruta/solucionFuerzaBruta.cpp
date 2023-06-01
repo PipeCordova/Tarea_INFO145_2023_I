@@ -1,13 +1,13 @@
 /* Integrantes:
-	- Felipe Córdova
-	- Sebastián Montecinos
+	- Felipe Cordova
+	- Sebastian Montecinos
 */
 
 #include <iostream> 
 #include <vector> // Trabajamos con vectores
 #include <cmath> // Para usar la funcion pow y log
 #include <stdlib.h> // Para los numeros randoms
-#include <algorithm> // Para utilizar la funcion sort 
+#include <algorithm> // Para utilizar el metodo sort
 
 using namespace std;
 
@@ -38,7 +38,8 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
             continue; // si estas condiciones se cumplen se pasa a la sgte iteracion
         }
         
-        // log(n) / log(n) nos da el numero maximo de saltos.
+        //La condición i <= log(n) / log(p) garantiza que p^k <= n --> Esto dice el enunciado
+
         for(int i = 0; i <= (log(n) / log(p)); i++){
             int siguiente_escalon = pos_actual + pow(p, i);
             
@@ -63,34 +64,32 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
     return formas;
 }
 
-int main() {
-    cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecho Por Fuerza Bruta!!" << endl;
-    int n;  // Numero de escalones
-    int p;   // Potencia de salto
-    int r;   // Numero de escalones rotos
-
-    // Pidiendo al usuario los numeros correspondientes.
-    cout << "Ingrese el numero de escalones n = ";
-    cin >> n;
-    cout << "Ingrese el la potencia de salto p = ";
-    cin >> p;
-    cout << "Ingrese el numero de escalones rotos r = ";
-    cin >> r;
-
-    // Se puede pedir muchas condiciones, ejemplo: n,p,r > 1, solo pondremos la que sale en el enunciado.
-    if(r >= n){
-        cout << "Debe cumplirse que r < n !!" << endl;
-        return EXIT_FAILURE; // Se termina el programa de manera anormal.
+int main(int argc, char* argv[]){
+    if (argc != 4) {
+        cout << "¡¡ERROR!! Tiene que compilar ./prog1 n p r" << endl;
+        return EXIT_FAILURE;
     }
+    int n = atoi(argv[1]); // Numero de escalones
+    int p = atoi(argv[2]); // Potencia de salto
+    int r = atoi(argv[3]); // Numero de escalones rotos
+
+    // r < n --> Esto dice el enunciado. Se pueden pedir mas condiciones... 
+    if(r >= n){
+        cout << "¡¡Debe cumplirse que r < n !!" << endl;
+        return EXIT_FAILURE; // Se termina el programa de manera inesperada.
+    }
+
+    cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecho Por Fuerza Bruta!!" << endl;
     
-    vector<int> escalones_rotos(r);  // vector para almacenar los indices de los escalones rotos
+    // vector para almacenar los indices de los escalones rotos
+    vector<int> escalones_rotos(r);
 
     // Inicializar la semilla con el tiempo actual, asi tenemos randoms distintos en cada ejecucion
     srand(time(0));
 
     // Aqui se crean los indices aleatorios de los escalones rotos. Desde 1 hasta n-1
     int k_aleatorio;
-    for (int i = 0; i < r; i++) {
+    for(int i = 0; i < r; i++){
         k_aleatorio = 1 + rand() % (n - 1);
 
         // verificando que siempre se agregen indices distintos
@@ -101,29 +100,29 @@ int main() {
         escalones_rotos[i] = k_aleatorio;
     }
 
-    
-    sort(escalones_rotos.begin(), escalones_rotos.end()); // Ordenar el vector en orden creciente con los indices
+    // Ordenar el vector en de menor a mayor con los indices
+    sort(escalones_rotos.begin(), escalones_rotos.end());
 
     // Mostrar el vector de escalones_rotos
     cout << "Los escalones rotos son: ";
-    for (int indice : escalones_rotos) {
+    for(int indice : escalones_rotos) {
         cout << indice << " ";
     }
-    cout << "\n¡¡Tenga cuidado!!" << endl;
+    cout << "\n¡¡Tenga cuidado de pisarlos!!" << endl;
 
     vector<vector<int>> formas = encontrarFormasPosibles(n, p, escalones_rotos);
     
     // Imprimir el número total de formas posibles
     cout << "Numero total de formas posibles: " << formas.size() << endl;
 
+    // Si hay 0 formas posibles, terminamos el programa, asi evitamos perder tiempo imprimiendo nada
     if(formas.size() == 0){
-        return EXIT_SUCCESS;
-    // si hay 0 formas posibles, terminamos el programa, asi evitamos perder tiempo imprimiendo nada
+        cout << "No puede subir :c" << endl;
     }else{
-        // Imprimir las formas posibles
-        for(unsigned int i = 0; i < formas.size(); i++) {
+        // Imprimir las formas posible
+        for(unsigned int i = 0; i < formas.size(); i++){
             cout << "Forma " << i + 1 << ": ";
-            for(unsigned int j = 0; j < formas[i].size(); j++) {
+            for(unsigned int j = 0; j < formas[i].size(); j++){
                 cout << formas[i][j] << " ";
             }
             cout << endl;
@@ -132,5 +131,4 @@ int main() {
     cout << "¡¡Fin Fuerza Bruta!!" << endl;
     return EXIT_SUCCESS;
 }
-
 
