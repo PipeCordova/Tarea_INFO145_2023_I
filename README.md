@@ -5,6 +5,8 @@ i) Para complicar el codigo, diríjase al archivo solucionFuerzaBruta.cpp, una v
 ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia de saltos permitidos y r = numero de escalones rotos  
 iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
 iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
+# Comentario   
+En el main(...), hay una instrucción para imprimir los posibles caminos que tiene dispoible nuestro héroe super Mario, si ud va a ejecutar el código con una entrada muy grande y no quiere ver en la pantalla los caminos, le recomendamos que comente desde la línea 118 hasta la 132.
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
 i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make  
