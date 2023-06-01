@@ -2,8 +2,9 @@
 
 # Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
 i) En el archivo solucionFuerzaBruta.cpp debe abrir la consola y escribir: make  
-ii) Escribir en la consola: ./prog1  
-iii) Se iniciará el programa. Se asumirá que ingresa n,p,r validos.  
+ii) Escribir en la consola: ./prog1 n p r  
+iii) n = número escalones; p = base de la potencia de saltos permitidos; r = numero de escalones rotos  
+iii) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
 i) En el archivo solucionDinamica.cpp debe abrir la consola y escribir: make  
