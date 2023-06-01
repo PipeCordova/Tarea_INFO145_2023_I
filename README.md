@@ -1,7 +1,7 @@
 # Instrucciones para ejecutar los codigos.
 
 # Problema 1: Subiendo La Escalera Solución Fuerza Bruta.  
-i) Para complicar el codigo, diríjase al archivo solucionFuerzaBruta.cpp, una vez ahí debe abrir la consola correspondiente y escribir: make  
+i) Para compilar el codigo, diríjase al archivo solucionFuerzaBruta.cpp, una vez ahí debe abrir la consola correspondiente y escribir: make  
 ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia de saltos permitidos y r = numero de escalones rotos.   
 iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
 iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
