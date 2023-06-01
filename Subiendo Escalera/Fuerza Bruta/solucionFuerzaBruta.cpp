@@ -3,247 +3,15 @@
 	- Sebastián Montecinos
 */
 
-/*
-#include <iostream>
-using namespace std;
-
-int main(int argc, char* argv[]){
-    if (argc != 3) {
-        cout << "¡¡ERROR!! Tiene que compilar ./prog1 r p" << endl;
-        return EXIT_FAILURE;
-    }
-    cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecha Por Fuerza Bruta!!" << endl;
-    int r = atoi(argv[1]);
-    int p = atoi(argv[2]);
-    cout << "Ingreso r = " << r << " y p = " << p << endl;
-    cout << "¡¡Fin Solución Fuerza Bruta!!" << endl;
-    return EXIT_SUCCESS;
-}
-*/
-
-
-
-// SOLUCION CASI
-
-/*
-#include <iostream>
-#include <vector>
-#include <cmath>
+#include <iostream> 
+#include <vector> // Trabajamos con vectores
+#include <cmath> // Para usar la funcion pow y log
+#include <stdlib.h> // Para los numeros randoms
+#include <algorithm> // Para utilizar la funcion sort 
 
 using namespace std;
 
-vector<vector<int>> encontrar_formas_posibles(int n, int p, int r, vector<int>& escalones_rotos, vector<int>& forma_actual) {
-    vector<vector<int>> formas;
-    
-    if (forma_actual.back() == n) {
-        formas.push_back(forma_actual);
-        return formas;
-    }
-    for (int i = 0; i <= (log(n) / log(p)); i++) {
-        int siguiente_escalón = forma_actual.back() + pow(p, i);
-        
-        bool escalon_roto = false;
-        for (int escalon : escalones_rotos) {
-            if (siguiente_escalón == escalon) {
-                escalon_roto = true;
-                break;
-            }
-        }
-        
-        if (escalon_roto || siguiente_escalón > n) {
-            continue;
-        }
-        
-        forma_actual.push_back(siguiente_escalón);
-        vector<vector<int>> formas_subsecuentes = encontrar_formas_posibles(n, p, r, escalones_rotos, forma_actual);
-        formas.insert(formas.end(), formas_subsecuentes.begin(), formas_subsecuentes.end());
-        forma_actual.pop_back();
-    }
-    
-    return formas;
-}
-
-int main() {
-    int n = 10;  // Número de escalones
-    int p = 2;   // Potencia de salto
-    int r = 3;   // Número de escalones rotos
-    
-    vector<int> escalones_rotos = {4, 5, 8};  // Índices de los escalones rotos
-    
-    vector<int> forma_actual = {1};  // Comenzar en el escalón 1
-    
-    vector<vector<int>> formas = encontrar_formas_posibles(n, p, r, escalones_rotos, forma_actual);
-    
-    // Imprimir el número total de formas posibles
-    cout << "Número total de formas posibles: " << formas.size() << endl;
-    
-    // Imprimir las formas posibles
-    for (int i = 0; i < formas.size(); i++) {
-        cout << "Forma " << i + 1 << ": ";
-        for (int j = 0; j < formas[i].size(); j++) {
-            cout << formas[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-    return 0;
-}
-*/
-
-/*
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-using namespace std;
-
-void encontrarFormasPosibles(int pos, int n, int p, vector<int>& escalones_rotos, vector<int>& forma_actual, vector<vector<int>>& formas) {
-    if (pos == n) {
-        formas.push_back(forma_actual);
-        return;
-    }
-    
-    for (int i = 0; i <= (log(n) / log(p)); i++) {
-        int siguiente_escalón = pos + pow(p, i);
-        
-        bool escalon_roto = false;
-        for (int escalon : escalones_rotos) {
-            if (siguiente_escalón == escalon) {
-                escalon_roto = true;
-                break;
-            }
-        }
-        
-        if (escalon_roto || siguiente_escalón > n) {
-            continue;
-        }
-        
-        forma_actual.push_back(siguiente_escalón);
-        encontrarFormasPosibles(siguiente_escalón, n, p, escalones_rotos, forma_actual, formas);
-        forma_actual.pop_back();
-    }
-}
-
-int main() {
-    int n = 10;  // Número de escalones
-    int p = 2;   // Potencia de salto
-    int r = 3;   // Número de escalones rotos
-    
-    vector<int> escalones_rotos = {4, 5, 8};  // Índices de los escalones rotos
-    
-    vector<vector<int>> formas;
-    vector<int> forma_actual;
-    
-    encontrarFormasPosibles(0, n, p, escalones_rotos, forma_actual, formas);
-    
-    // Imprimir el número total de formas posibles
-    cout << "Número total de formas posibles: " << formas.size() << endl;
-    
-    // Imprimir las formas posibles
-    for (int i = 0; i < formas.size(); i++) {
-        cout << "Forma " << i + 1 << ": ";
-        for (int j = 0; j < formas[i].size(); j++) {
-            cout << formas[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-    return 0;
-}
-*/
-
-
-/*
-
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-using namespace std;
-
-vector<vector<int>> encontrarFormasPosibles(int n, int p, int r, vector<int>& escalones_rotos) {
-    vector<vector<int>> formas;
-    
-    vector<int> forma_inicial;
-    forma_inicial.push_back(0);  // Comenzar en el escalón 0
-    
-    vector<vector<int>> formas_actuales;
-    formas_actuales.push_back(forma_inicial);
-    
-    while (!formas_actuales.empty()) {
-        vector<int> forma_actual = formas_actuales.back();
-        formas_actuales.pop_back();
-        
-        int pos_actual = forma_actual.back();
-        
-        if (pos_actual == n) {
-            formas.push_back(forma_actual);
-            continue;
-        }
-        
-        for (int i = 0; i <= (log(n) / log(p)); i++) {
-            int siguiente_escalón = pos_actual + pow(p, i);
-            
-            bool escalon_roto = false;
-            for (int escalon : escalones_rotos) {
-                if (siguiente_escalón == escalon) {
-                    escalon_roto = true;
-                    break;
-                }
-            }
-            
-            if (escalon_roto || siguiente_escalón > n) {
-                continue;
-            }
-            
-            vector<int> nueva_forma = forma_actual;
-            nueva_forma.push_back(siguiente_escalón);
-            formas_actuales.push_back(nueva_forma);
-        }
-    }
-    
-    return formas;
-}
-
-int main() {
-    int n = 10;  // Número de escalones
-    int p = 2;   // Potencia de salto
-    int r = 3;   // Número de escalones rotos
-    
-    vector<int> escalones_rotos = {4, 5, 8};  // Índices de los escalones rotos
-    
-    vector<vector<int>> formas = encontrarFormasPosibles(n, p, r, escalones_rotos);
-    
-    // Imprimir el número total de formas posibles
-    cout << "Número total de formas posibles: " << formas.size() << endl;
-    
-    // Imprimir las formas posibles
-    for (int i = 0; i < formas.size(); i++) {
-        cout << "Forma " << i + 1 << ": ";
-        for (int j = 0; j < formas[i].size(); j++) {
-            cout << formas[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-    return 0;
-}
-
-
-*/
-
-
-// ESTA SOLUCION ESTA BIEN IGUAL, 
-// PERO int pos_actual = forma_actual.empty() ? 0 : forma_actual.back();
-// esa instruccion no me gusto, asi que le pedi a gpt otra propuesta.
-/*
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-using namespace std;
-
-vector<vector<int>> encontrarFormasPosibles(int n, int p, int r, vector<int>& escalones_rotos) {
+vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones_rotos) {
     vector<vector<int>> formas;
     
     vector<int> forma_inicial;
@@ -251,119 +19,43 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, int r, vector<int>& es
     vector<vector<int>> formas_actuales;
     formas_actuales.push_back(forma_inicial);
     
-    while (!formas_actuales.empty()) {
-        vector<int> forma_actual = formas_actuales.back();
-        formas_actuales.pop_back();
-        
-        int pos_actual = forma_actual.empty() ? 0 : forma_actual.back();
-        
-        if (pos_actual == n) {
-            if (!forma_actual.empty() && forma_actual[0] == 0)
-                forma_actual.erase(forma_actual.begin()); // Eliminar el 0 al comienzo
-            formas.push_back(forma_actual);
-            continue;
-        }
-        
-        for (int i = 0; i <= (log(n) / log(p)); i++) {
-            int siguiente_escalón = pos_actual + pow(p, i);
-            
-            bool escalon_roto = false;
-            for (int escalon : escalones_rotos) {
-                if (siguiente_escalón == escalon) {
-                    escalon_roto = true;
-                    break;
-                }
-            }
-            
-            if (escalon_roto || siguiente_escalón > n) {
-                continue;
-            }
-            
-            vector<int> nueva_forma = forma_actual;
-            nueva_forma.push_back(siguiente_escalón);
-            formas_actuales.push_back(nueva_forma);
-        }
-    }
-    
-    return formas;
-}
-
-int main() {
-    int n = 10;  // Número de escalones
-    int p = 2;   // Potencia de salto
-    int r = 3;   // Número de escalones rotos
-    
-    vector<int> escalones_rotos = {4, 5, 8};  // Índices de los escalones rotos
-    
-    vector<vector<int>> formas = encontrarFormasPosibles(n, p, r, escalones_rotos);
-    
-    // Imprimir el número total de formas posibles
-    cout << "Número total de formas posibles: " << formas.size() << endl;
-    
-    // Imprimir las formas posibles
-    for (int i = 0; i < formas.size(); i++) {
-        cout << "Forma " << i + 1 << ": ";
-        for (int j = 0; j < formas[i].size(); j++) {
-            cout << formas[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-    return 0;
-}
-
-*/
-
-// esta solucion me parece bien, ya que no tiene instrucciones extrañas, quizas hay otra forma de eliminar el 0 del comienzo, (linea 345)
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-using namespace std;
-
-vector<vector<int>> encontrarFormasPosibles(int n, int p, int r, vector<int>& escalones_rotos) {
-    vector<vector<int>> formas;
-    
-    vector<int> forma_inicial;
-    
-    vector<vector<int>> formas_actuales;
-    formas_actuales.push_back(forma_inicial);
-    
-    while (!formas_actuales.empty()) {
+    while(!formas_actuales.empty()){
         vector<int> forma_actual = formas_actuales.back();
         formas_actuales.pop_back();
         
         int pos_actual;
-        if (forma_actual.empty()) {
+        if(forma_actual.empty()){
             pos_actual = 0;
-        } else {
+        }else{
             pos_actual = forma_actual.back();
         }
         
-        if (pos_actual == n) {
-            if (!forma_actual.empty() && forma_actual[0] == 0)
+        if(pos_actual == n){
+            if(!forma_actual.empty() && forma_actual[0] == 0){
                 forma_actual.erase(forma_actual.begin()); // Eliminar el 0 al comienzo
+            }
             formas.push_back(forma_actual);
-            continue;
+            continue; // si estas condiciones se cumplen se pasa a la sgte iteracion
         }
         
-        for (int i = 0; i <= (log(n) / log(p)); i++) {
-            int siguiente_escalón = pos_actual + pow(p, i);
+        // log(n) / log(n) nos da el numero maximo de saltos.
+        for(int i = 0; i <= (log(n) / log(p)); i++){
+            int siguiente_escalon = pos_actual + pow(p, i);
             
             bool escalon_roto = false;
-            for (int escalon : escalones_rotos) {
-                if (siguiente_escalón == escalon) {
+            for(int escalon : escalones_rotos){
+                if(siguiente_escalon == escalon){
                     escalon_roto = true;
                     break;
                 }
             }
             
-            if (escalon_roto || siguiente_escalón > n) {
-                continue;
+            if(escalon_roto == true || siguiente_escalon > n){
+                continue; // si estas condiciones se cumplen se pasa a la sgte iteracion
             }
             
             vector<int> nueva_forma = forma_actual;
-            nueva_forma.push_back(siguiente_escalón);
+            nueva_forma.push_back(siguiente_escalon);
             formas_actuales.push_back(nueva_forma);
         }
     }
@@ -372,26 +64,72 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, int r, vector<int>& es
 }
 
 int main() {
-    int n = 10;  // Número de escalones
-    int p = 2;   // Potencia de salto
-    int r = 3;   // Número de escalones rotos
-    
-    vector<int> escalones_rotos = {4, 5, 8};  // Índices de los escalones rotos
-    
-    vector<vector<int>> formas = encontrarFormasPosibles(n, p, r, escalones_rotos);
-    
-    // Imprimir el número total de formas posibles
-    cout << "Número total de formas posibles: " << formas.size() << endl;
-    
-    // Imprimir las formas posibles
-    for (int i = 0; i < formas.size(); i++) {
-        cout << "Forma " << i + 1 << ": ";
-        for (int j = 0; j < formas[i].size(); j++) {
-            cout << formas[i][j] << " ";
-        }
-        cout << endl;
+    cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecho Por Fuerza Bruta!!" << endl;
+    int n;  // Numero de escalones
+    int p;   // Potencia de salto
+    int r;   // Numero de escalones rotos
+
+    // Pidiendo al usuario los numeros correspondientes.
+    cout << "Ingrese el numero de escalones n = ";
+    cin >> n;
+    cout << "Ingrese el la potencia de salto p = ";
+    cin >> p;
+    cout << "Ingrese el numero de escalones rotos r = ";
+    cin >> r;
+
+    // Se puede pedir muchas condiciones, ejemplo: n,p,r > 1, solo pondremos la que sale en el enunciado.
+    if(r >= n){
+        cout << "Debe cumplirse que r < n !!" << endl;
+        return EXIT_FAILURE; // Se termina el programa de manera anormal.
     }
     
-    return 0;
+    vector<int> escalones_rotos(r);  // vector para almacenar los indices de los escalones rotos
+
+    // Inicializar la semilla con el tiempo actual, asi tenemos randoms distintos en cada ejecucion
+    srand(time(0));
+
+    // Aqui se crean los indices aleatorios de los escalones rotos. Desde 1 hasta n-1
+    int k_aleatorio;
+    for (int i = 0; i < r; i++) {
+        k_aleatorio = 1 + rand() % (n - 1);
+
+        // verificando que siempre se agregen indices distintos
+        while(find(escalones_rotos.begin(), escalones_rotos.begin() + i, k_aleatorio) != escalones_rotos.begin() + i) {
+            k_aleatorio = 1 + rand() % (n - 1);
+        }
+
+        escalones_rotos[i] = k_aleatorio;
+    }
+
+    
+    sort(escalones_rotos.begin(), escalones_rotos.end()); // Ordenar el vector en orden creciente con los indices
+
+    // Mostrar el vector de escalones_rotos
+    cout << "Los escalones rotos son: ";
+    for (int indice : escalones_rotos) {
+        cout << indice << " ";
+    }
+    cout << "\n¡¡Tenga cuidado!!" << endl;
+
+    vector<vector<int>> formas = encontrarFormasPosibles(n, p, escalones_rotos);
+    
+    // Imprimir el número total de formas posibles
+    cout << "Numero total de formas posibles: " << formas.size() << endl;
+
+    if(formas.size() == 0){
+        return EXIT_SUCCESS;
+    // si hay 0 formas posibles, terminamos el programa, asi evitamos perder tiempo imprimiendo nada
+    }else{
+        // Imprimir las formas posibles
+        for(unsigned int i = 0; i < formas.size(); i++) {
+            cout << "Forma " << i + 1 << ": ";
+            for(unsigned int j = 0; j < formas[i].size(); j++) {
+                cout << formas[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+    cout << "¡¡Fin Fuerza Bruta!!" << endl;
+    return EXIT_SUCCESS;
 }
 
