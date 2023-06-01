@@ -40,7 +40,7 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
         
         //La condición i <= log(n) / log(p) garantiza que p^k <= n --> Esto dice el enunciado
 
-        for(int i = 0; i <= (log(n) / log(p)); i++){
+        for(int i = 0; i <= int(log(n) / log(p)); i++){
             int siguiente_escalon = pos_actual + pow(p, i);
             
             bool escalon_roto = false;
