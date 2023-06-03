@@ -6,7 +6,7 @@
 #include <vector> // Trabajamos con vectores
 #include <cmath> // Para usar la funcion pow y log
 #include <stdlib.h> // Para los numeros randoms
-#include <algorithm> // Para utilizar el metodo sort
+#include <algorithm> // Para utilizar el metodo find
 using namespace std;
 
 // Declarando la funciones utilizadas
