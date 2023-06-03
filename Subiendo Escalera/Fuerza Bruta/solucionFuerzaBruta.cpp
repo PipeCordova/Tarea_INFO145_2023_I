@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 /* En esta funcion se usan varios metodos de vectores. Consideremos que v es un vector entonces...
     v.push_back(...) --> Agregamos un nuevo elemento al final de v
     v.empty() --> Para verificar si v esta sin elementos o no.
