@@ -6,8 +6,7 @@ ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia
 iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
 iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
 # Comentario   
-En el main(...), hay líneas que dicen: // Inicio posible comentario // Fin posible comentario. Le recomendamos comentar con /*  */ encerrando 
-respectivamente esas instrucciones ya que son para imprimir y comprobar el trabajo con entradas pequeñas. Si va a ejecutar con entradas muy grandes, desde ya comente.  
+Cada función esta explicada de manera precisa y clara. Considere en el main(..) comentar las funciones para imprimir para ejecuciones con entrada muy grande.  
 
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
