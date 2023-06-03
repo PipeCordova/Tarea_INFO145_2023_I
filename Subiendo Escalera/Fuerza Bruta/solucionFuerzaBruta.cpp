@@ -116,7 +116,6 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
             formas_actuales.push_back(nueva_forma);
         }
     }
-    
     return formas;
 }
 
