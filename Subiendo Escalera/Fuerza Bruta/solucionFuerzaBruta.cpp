@@ -11,6 +11,7 @@
 
 using namespace std;
 
+
 /* En esta funcion se usan varios metodos de vectores. Consideremos que v es un vector entonces...
     v.push_back(...) --> Agregamos un nuevo elemento al final de v
     v.empty() --> Para verificar si v esta sin elementos o no.
@@ -81,8 +82,8 @@ int main(int argc, char* argv[]){
             cout << "¡¡ERROR!! Tiene que compilar ./prog1 n p r" << endl;
         }else{ // Obligamos que r < n --> Esto dice el enunciado. Se pueden pedir mas condiciones... 
             cout << "¡¡Debe cumplirse que r < n!!" << endl;
-        return EXIT_FAILURE;
         }
+        return EXIT_FAILURE;
     }
 
     cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecho Por Fuerza Bruta!!" << endl;
