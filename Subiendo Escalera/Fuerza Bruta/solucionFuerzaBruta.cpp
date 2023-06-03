@@ -19,8 +19,8 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
 correspondientes. Luego se crea un vector el cual sera el retorno de la funcion que genera 
 los indices con r escalones rotos. Finalmente se crea una matriz de vectores para almacenar los
 posibles caminos que tiene nuestro heroe Super Mario para llegar al final de la escalera sin pisar 
-los escalones rotos. Como se menciona en el README, recomendamos comentar las funciones imprimir si 
-va a ejecutar con entradas muy grandes. */
+los escalones rotos. Como se menciona en el README, recomendamos comentar las funciones para imprimir 
+si va a ejecutar con entradas muy grandes. */
 int main(int argc, char* argv[]){
     if(argc != 4 || atoi(argv[3]) >= atoi(argv[1])){
         if(argc != 4){
