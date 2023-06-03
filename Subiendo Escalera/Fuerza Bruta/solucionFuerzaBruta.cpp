@@ -19,7 +19,7 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
 correspondientes. Luego se crea un vector el cual sera el retorno de la funcion que genera 
 los indices con r escalones rotos. Finalmente se crea una matriz de vectores para almacenar los
 posibles caminos que tiene nuestro heroe Super Mario para llegar al final de la escalera sin pisar 
-los escalones rotos. Como se menciona en el README, recomendamos comentar las funciones para imprimir 
+los escalones rotos. Como se menciona en el README, recomendamos comentar las funciones para imprimir
 si va a ejecutar con entradas muy grandes. */
 int main(int argc, char* argv[]){
     if(argc != 4 || atoi(argv[3]) >= atoi(argv[1])){
@@ -32,20 +32,20 @@ int main(int argc, char* argv[]){
     }
     cout << "¡¡Bienvenido Al Problema Subiendo La Escalera Hecho Por Fuerza Bruta!!" << endl;
     int n = atoi(argv[1]); // Numero de escalones
-    int p = atoi(argv[2]); // Base de la otencia de salto
+    int p = atoi(argv[2]); // Base de la potencia de salto
     int r = atoi(argv[3]); // Numero de escalones rotos
     vector<int> escalones_rotos = generarIndicesAleatorios(n, r);
-    imprimirEscalonesRotos(escalones_rotos); 
+    imprimirEscalonesRotos(escalones_rotos); // <-- Comente esto para entradas grandes!!
     vector<vector<int>> formas = encontrarFormasPosibles(n, p, escalones_rotos);
-    imprimirFormasPosibles(formas);
+    imprimirFormasPosibles(formas); // <-- Comente esto para entradas grandes!!
     cout << "¡¡Fin Fuerza Bruta!!" << endl;
     return EXIT_SUCCESS;
 }
 
-/* Funcion que genera los indices aleatorios para los escalones rotos. Se crea un vector de largo r
-y se genera una semilla con el tiempo actual, asi tenemos randoms distintos en cada ejecucion.
-Luego simplemente se generan los r numeros aleatorios en el rango 1..n-1, validando que no se repitan. 
-Finalmente se agregan al vector en su posicion i respectiva. */
+/* Funcion que retorna un vector con los indices aleatorios para los escalones rotos. Se crea 
+un vector de largo r y se genera una semilla con el tiempo actual, asi tenemos randoms distintos 
+en cada ejecucion. Luego simplemente se generan los r numeros aleatorios en el rango 1..n-1, 
+validando que no se repitan. Finalmente se agregan al vector en su posicion i respectiva. */
 vector<int> generarIndicesAleatorios(int n, int r) {
     vector<int> escalones_rotos(r);
     srand(time(0));
@@ -68,6 +68,14 @@ vector<int> generarIndicesAleatorios(int n, int r) {
     v.back() --> Para acceder al ultimo elemento de v
     v.erase(...) --> para eliminar uno o varios elementos de v
     v.begin() --> Iterador que apunta a la primera posicion de v
+   
+   Esta funcion es la que mas tiempo consume, se trato se hacer lo mas eficiente dentro de lo posible.
+   --> No olvidar que esto es fuerza bruta, por eso se usan instrucciones como continue y break.
+
+   Recordar que: 
+        - continue salta a la siguiente iteracion, ignorando lo restante del codigo en esa iteracion.
+        - break hace que la ejecucion se detenga inmediatamente y salga del bucle.
+
 */
 vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones_rotos) {
     vector<vector<int>> formas; // Esta matriz retornara todos los posibles caminos 
@@ -93,8 +101,7 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
                 forma_actual.erase(forma_actual.begin()); // Eliminar el 0 al comienzo
             }
             formas.push_back(forma_actual);
-            continue; /* Si estas condiciones se cumplen se pasa a la sgte iteracion. Se salta el
-            codigo faltante */
+            continue;
         }
         // La condición i <= log(n) / log(p) garantiza que p^k <= n --> Esto dice el enunciado
         for(int i = 0; i <= int(log(n) / log(p)); i++){
@@ -108,8 +115,7 @@ vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones
                 }
             }
             if(escalon_roto == true || siguiente_escalon > n){
-                continue; /* Si estas condiciones se cumplen se pasa a la sgte iteracion. Se salta el
-            codigo faltante */
+                continue;
             }
             vector<int> nueva_forma = forma_actual;
             nueva_forma.push_back(siguiente_escalon);
@@ -131,6 +137,9 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos) {
     return;
 }
 
+/* En general es imposible imprimir un arreglo 2D en menos de O(u²) --> Suponiendo que es u x u
+En este caso no necesariamente la matriz es u x u, pero se entiende que tiene un costo cuadratico
+en funcion del tamaño de la matriz */
 void imprimirFormasPosibles(const vector<vector<int>>& formas) {
     cout << "Numero total de formas posibles: " << formas.size() << endl;
     if(formas.size() == 0){
