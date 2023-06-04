@@ -11,8 +11,8 @@
 using namespace std;
 
 // Declarando la funciones utilizadas.
-vector<vector<int>> encontrarFormasPosibles(int n, int p, const vector<int>& escalones_rotos);
 vector<int> generarIndicesAleatorios(int n, int r);
+vector<vector<int>> encontrarFormasPosibles(int n, int p, const vector<int>& escalones_rotos);
 void imprimirFormasPosibles(const vector<vector<int>>& formas);
 void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
 
