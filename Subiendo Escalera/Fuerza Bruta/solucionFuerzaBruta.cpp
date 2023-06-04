@@ -7,10 +7,11 @@
 #include <cmath> // Para usar la funcion pow y log
 #include <stdlib.h> // Para los numeros randoms
 #include <algorithm> // Para utilizar el metodo find
+#define TEST 1 // TEST = 0 <--> false, TEST = 1 <--> true
 using namespace std;
 
-// Declarando la funciones utilizadas
-vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones_rotos);
+// Declarando la funciones utilizadas.
+vector<vector<int>> encontrarFormasPosibles(int n, int p, const vector<int>& escalones_rotos);
 vector<int> generarIndicesAleatorios(int n, int r);
 void imprimirFormasPosibles(const vector<vector<int>>& formas);
 void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
@@ -19,8 +20,9 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
 correspondientes. Luego se crea un vector el cual sera el retorno de la funcion que genera 
 los indices con r escalones rotos. Finalmente se crea una matriz de vectores para almacenar los
 posibles caminos que tiene nuestro heroe Super Mario para llegar al final de la escalera sin pisar 
-los escalones rotos. Como se menciona en el README, recomendamos comentar las funciones para imprimir
-si va a ejecutar con entradas muy grandes. */
+los escalones rotos. Como se menciona en el README, recomendamos cambiar el valor de TEST si 
+ejecuta con valores grandes. --> Linea 10 */
+
 int main(int argc, char* argv[]){
     if(argc != 4 || atoi(argv[3]) >= atoi(argv[1])){
         if(argc != 4){
@@ -35,9 +37,11 @@ int main(int argc, char* argv[]){
     int p = atoi(argv[2]); // Base de la potencia de salto
     int r = atoi(argv[3]); // Numero de escalones rotos
     vector<int> escalones_rotos = generarIndicesAleatorios(n, r);
-    imprimirEscalonesRotos(escalones_rotos); // <-- Comente esto para entradas grandes!!
     vector<vector<int>> formas = encontrarFormasPosibles(n, p, escalones_rotos);
-    imprimirFormasPosibles(formas); // <-- Comente esto para entradas grandes!!
+    if(TEST){
+        imprimirEscalonesRotos(escalones_rotos);
+        imprimirFormasPosibles(formas);
+    }
     cout << "¡¡Fin Fuerza Bruta!!" << endl;
     return EXIT_SUCCESS;
 }
@@ -77,7 +81,7 @@ vector<int> generarIndicesAleatorios(int n, int r) {
         - break hace que la ejecucion se detenga inmediatamente y salga del bucle.
 
 */
-vector<vector<int>> encontrarFormasPosibles(int n, int p, vector<int>& escalones_rotos) {
+vector<vector<int>> encontrarFormasPosibles(int n, int p, const vector<int>& escalones_rotos) {
     vector<vector<int>> formas; // Esta matriz retornara todos los posibles caminos 
     
     vector<int> forma_inicial;
