@@ -13,8 +13,8 @@ using namespace std;
 // Declarando la funciones utilizadas.
 vector<int> generarIndicesAleatorios(int n, int r);
 vector<vector<int>> encontrarFormasPosibles(int n, int p, const vector<int>& escalones_rotos);
-void imprimirFormasPosibles(const vector<vector<int>>& formas);
 void imprimirEscalonesRotos(const vector<int>& escalonesRotos);
+void imprimirFormasPosibles(const vector<vector<int>>& formas);
 
 /* Programa principal. Se extrae n,p,r desde los argumentos realizando las verificaciones 
 correspondientes. Luego se crea un vector el cual sera el retorno de la funcion que genera 
