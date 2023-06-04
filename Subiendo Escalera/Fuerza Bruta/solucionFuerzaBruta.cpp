@@ -141,9 +141,6 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos) {
     return;
 }
 
-/* En general es imposible imprimir un arreglo 2D en menos de O(u²) --> Suponiendo que es u x u
-En este caso no necesariamente la matriz es u x u, pero se entiende que tiene un costo cuadratico
-en funcion del tamaño de la matriz */
 void imprimirFormasPosibles(const vector<vector<int>>& formas) {
     cout << "Numero total de formas posibles: " << formas.size() << endl;
     if(formas.size() == 0){
