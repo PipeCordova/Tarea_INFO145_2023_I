@@ -2,13 +2,13 @@
 	- Felipe Cordova
 	- Sebastian Montecinos
 */
-#include <iostream> 
+#include <iostream> // I/O
 #include <vector> // Trabajamos con vectores
 #include <cmath> // Para usar la funcion pow y log
-#include <stdlib.h> // Para los numeros randoms
+#include <cstdlib> // Para los numeros aleatorios
 #include <algorithm> // Para utilizar el metodo find
 #define TEST 1 // TEST = 0 <--> false, TEST = 1 <--> true
-using namespace std;
+using namespace std; // Para usar cout y no std::cout
 
 // Declarando la funciones utilizadas.
 vector<int> generarIndicesAleatorios(int n, int r);
