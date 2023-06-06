@@ -7,7 +7,7 @@
 #include <cmath> // Para usar la funcion pow y log
 #include <cstdlib> // Para los numeros aleatorios
 #include <algorithm> // Para utilizar el metodo find
-#define TEST 1 // TEST = 0 <--> false, TEST = 1 <--> true
+#define TEST 0 // TEST = 0 <--> false, TEST = 1 <--> true
 using namespace std; // Para usar cout y no std::cout
 
 // Declarando la funciones utilizadas.
@@ -38,6 +38,7 @@ int main(int argc, char* argv[]){
     int r = atoi(argv[3]); // Numero de escalones rotos
     vector<int> escalones_rotos = generarIndicesAleatorios(n, r);
     vector<vector<int>> formas = encontrarFormasPosibles(n, p, escalones_rotos);
+    cout << "Numero total de formas posibles: " << formas.size() << endl;
     if(TEST){
         imprimirEscalonesRotos(escalones_rotos);
         imprimirFormasPosibles(formas);
@@ -142,7 +143,6 @@ void imprimirEscalonesRotos(const vector<int>& escalonesRotos) {
 }
 
 void imprimirFormasPosibles(const vector<vector<int>>& formas) {
-    cout << "Numero total de formas posibles: " << formas.size() << endl;
     if(formas.size() == 0){
         cout << "No puede subir :c" << endl;
     }else{
