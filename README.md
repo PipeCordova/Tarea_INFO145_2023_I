@@ -6,7 +6,7 @@ ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia
 iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
 iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
 # Comentario   
-Cada función esta explicada de manera clara y precisa. Si va a ejecutar con valores muy grandes, recomendamos cambiar el valor de TEST a 0 (linea 10), ya que gracias a eso se imprimen los resultados en pantalla.  
+Cada función esta explicada de manera clara y precisa. Tenemos una variable TEST al inicio del código, puede cambiar su valor si desea ver los resultados en pantalla con los posibles caminos.  
 
 # Problema 1: Subiendo La Escalera Solución Programación Dinámica.  
 i) Para compilar el codigo, diríjase al archivo solucionDinamica.cpp, una vez ahí debe abrir la consola correspondiente y escribir: make  
