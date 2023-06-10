@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++17 -O3
 
-SOURCES = solucionFuerzaBruta.cpp
+SOURCES = formaSeba.cpp
 EXECUTABLE = prog1
 
 all: $(EXECUTABLE)
