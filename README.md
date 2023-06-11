@@ -2,7 +2,7 @@
 
 # Problema 1: Subiendo La Escalera
 
-i. Compilación: Abra la consola en el directorio donde se encuentra el archivo "script.cpp" y ejecuta el comando "make".
+i. Compilación: Abra la consola en el directorio donde se encuentra el archivo "script.cpp" y ejecute el comando "make".
 
 ii. Configuración de entrada: Antes de ejecutar el programa, considere los siguientes valores: 
    - n: número de escalones.
