@@ -1,18 +1,20 @@
-# Instrucciones para ejecutar los codigos.
+# Instrucciones para ejecutar los códigos:
 
-# Problema 1: Subiendo La Escalera.  
-i) Para compilar el codigo, diríjase al archivo solucionFuerzaBruta.cpp, una vez ahí debe abrir la consola correspondiente y escribir: make   
-ii) Antes de ejecutar. Considere: n = número escalones, p = base de la potencia de saltos permitidos y r = numero de escalones rotos.   
-iii) Ya con el punto ii claro. Escriba en la consola: ./prog1 n p r  
-iv) Se iniciará el programa. Se asumirá que ingresa n,p,r validos, solo verificamos que r < n (Enunciado)  
+# Problema 1: Subiendo La Escalera
+
+i. Compilación: Abra la consola en el directorio donde se encuentra el archivo "script.cpp" y ejecuta el comando "make".
+
+ii. Configuración de entrada: Antes de ejecutar el programa, considere los siguientes valores: 
+   - n: número de escalones.
+   - p: base de la potencia de los saltos permitidos.
+   - r: número de escalones rotos.
+
+iii. Ejecución: En la consola, escriba el siguiente comando: "./prog1 n p r". 
+   Asegúrate de ingresar valores válidos para n, p y r. Solo verificamos r < n, según el enunciado.
+
+iv. Programa en funcionamiento: El programa se iniciará y validará la entrada.
+
 # Comentario   
-Entregaremos un archivo.cpp con ambos formas pedidas (FB y PD), para así sacar nuestras conclusiones en los diferentes algoritmos pero con la misma entrada.  
+Entregaremos el archivo.cpp con ambas formas solicitadas, tanto la implementación de Fuerza Bruta (FB) como la implementación de Programación Dinámica (PD). De esta manera, podremos obtener conclusiones comparativas sobre los diferentes algoritmos utilizando la misma entrada.  
 
 # Problema 2: Ruta en Grafos Mediante Algoritmos Greedy.  
-
-i) En el archivo solucionGrafos.cpp debe abrir la consola y escribir make  
-ii) Escribir en la consola: ./prog3 n k m  
-iii) Considere n,k,m numeros enteros.  
-  
- 
- 
