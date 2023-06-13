@@ -3,18 +3,18 @@
 #include <algorithm> // Para utilizar el metodo find
 #include <set> // Para usar set y su función insert()
 #include <ctime> // Para cambiar la semilla y medir tiempo
-#include <climits>
+#include <climits> // Para usar LLONG_MAX
 #define FB 1 // 1 para mostrar la solución por Fuerza Bruta, 0 para no mostarla
 #define PD 1 // 1 para mostrar la solución por Programación Dinámica, 0 para no mostarla
-using namespace std;
+using namespace std; // Para usar cout y no std::cout
 
+// Declarando funciones a utilizar
 void imprimeVector(vector<int> v);
 void generaRotos(int cant, int n, vector<int>& rotos);
 long long formasPD(int n, int k, vector<int>& B, vector<int>& rotos);
 int formasFB(int n, int k, vector<int>& B, vector<int>& rotos);
 vector<int> creaPotencias(int p, int n);
 vector<int> formaMasCortaPD(int n, int k, vector<int>& B, vector<int>& rotos);
-
 
 
 int main(int argc, char* argv[]){
