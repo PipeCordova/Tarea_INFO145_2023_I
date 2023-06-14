@@ -1,0 +1,29 @@
+Solución de fuerza bruta: Una solución de fuerza bruta para este problema implicaría generar todos los posibles caminos desde la ciudad capital s hasta la isla capital z, y luego seleccionar el camino con el costo mínimo. Esto implicaría generar todos los posibles caminos que incluyen cualquier número de ciudades y rutas marítimas, y luego calcular el costo total de cada camino. El camino con el costo mínimo sería la solución al problema. Sin embargo, este enfoque tendría una complejidad de tiempo exponencial, lo que lo hace impracticable para grandes conjuntos de datos.
+
+Algoritmo Greedy: Un algoritmo greedy para este problema podría ser una adaptación del algoritmo de Dijkstra. En cada paso, el algoritmo seleccionaría la ruta con el costo mínimo entre las rutas disponibles que aún no han sido visitadas. El algoritmo continuaría este proceso hasta que se llegue a la isla capital z. Este enfoque garantiza que se encuentre el camino de costo mínimo, ya que siempre selecciona la ruta de costo mínimo en cada paso.
+
+
+function Dijkstra(G, s, z):
+    create vertex set Q
+    for each vertex v in Graph:             
+        dist[v] ← INFINITY                  
+        prev[v] ← UNDEFINED                 
+        add v to Q                          
+    dist[s] ← 0                            
+    while Q is not empty:
+        u ← vertex in Q with min dist[u]   
+        remove u from Q
+        for each neighbor v of u:           
+            alt ← dist[u] + length(u, v)
+            if alt < dist[v]:               
+                dist[v] ← alt
+                prev[v] ← u
+    return dist[], prev[]
+
+Dijkstra(G, s, z)
+
+
+El tiempo de ejecución asintótico de este algoritmo es O((V+E) log V), donde V es el número de vértices y E es el número de aristas en el grafo.
+Variación de valores de k: El valor de k representa el número de ciudades con puertos marítimos. A medida que k aumenta, el número de posibles rutas que el algoritmo debe considerar también aumenta. Por lo tanto, un aumento en el valor de k aumentaría el tiempo de ejecución del algoritmo.
+
+Mejoras posibles: Una posible mejora sería utilizar una estructura de datos de cola de prioridad para almacenar los nodos no visitados en lugar de una lista o un conjunto. Esto podría acelerar el tiempo de ejecución del algoritmo al permitir una extracción más rápida del nodo con la distancia mínima. Además, si el grafo es disperso (es decir, tiene relativamente pocas aristas), se podría utilizar una matriz de adyacencia en lugar de una lista de adyacencia para representar el grafo, lo que podría acelerar el tiempo de ejecución del algoritmo.
