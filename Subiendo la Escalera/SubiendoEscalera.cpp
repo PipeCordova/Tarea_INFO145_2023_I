@@ -63,7 +63,7 @@ int main(int argc, char* argv[]){
         double secs1 = static_cast<double>(t2-t1)/CLOCKS_PER_SEC;
 
         cout << "Formas posibles\t\t= " << f1 << endl;
-        cout << "Tiempo de ejecución\t= " << secs1 << " segundos" << endl;
+        cout << "Tiempo de ejecución\t= " << secs1 << " [s]" << endl;
     }
 
     if(PD){
@@ -77,7 +77,7 @@ int main(int argc, char* argv[]){
         double secs2 = static_cast<double>(t4-t3)/CLOCKS_PER_SEC;
 
         cout << "Formas posibles\t\t= " << f2 << endl;
-        cout << "Tiempo de ejecución\t= " << secs2 << " segundos" << endl;
+        cout << "Tiempo de ejecución\t= " << secs2 << " [s]" << endl;
 
     }
 
