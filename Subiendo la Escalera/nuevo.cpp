@@ -4,14 +4,14 @@
 #include <set> // Para usar set y su función insert()
 #include <ctime> // Para cambiar la semilla y medir tiempo
 #include <climits> // Para usar LLONG_MAX
-#define FB 1 // 1 para mostrar la solución por Fuerza Bruta, 0 para no mostarla
-#define PD 0 // 1 para mostrar la solución por Programación Dinámica, 0 para no mostarla
+#define FB 0 // 1 para mostrar la solución por Fuerza Bruta, 0 para no mostarla
+#define PD 1 // 1 para mostrar la solución por Programación Dinámica, 0 para no mostarla
 using namespace std; // Para usar cout y no std::cout
 
 // Declaración de funciones a utilizar
 void imprimeVector(vector<int> v);
 void generaRotos(int cant, int n, vector<int>& rotos);
-long long formasPD(int n, int k, vector<int>& B, vector<int>& rotos);
+long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos);
 int formasFB(int n, int k, vector<int>& B, vector<int>& rotos);
 vector<int> creaPotencias(int p, int n);
 vector<int> formaMasCortaPD(int n, int k, vector<int>& B, vector<int>& rotos);
@@ -119,8 +119,10 @@ int formasFB(int n, int k, vector<int>& B, vector<int>& rotos) {
     Es de tipo long long ya que cuando n es muy grande (tambien depende el valor de r), la cantidad de formas 
     posibles para subir la escalera se vuelve extremadamente grande, ocasionando OverFlow.
     Aún siendo de tipo long long se genera OverFlow en ciertos casos.   */
-long long formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
-    vector<long long> aux(n + 1, 0);
+
+/*
+long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
+    vector<long long int> aux(n + 1, 0);
     aux[0] = 1; // Caso base: hay una forma de subir una escalera de longitud 0
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j < k; j++) {
@@ -131,6 +133,30 @@ long long formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
     }
     return aux[n];
 }
+
+*/
+long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
+    vector<long long int> aux(n + 1, 0);
+    aux[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < k; j++) {
+            if (i - B[j] >= 0 && find(rotos.begin(), rotos.end(), i) == rotos.end()) {
+                if (aux[i - B[j]] >= 0 && aux[i] + aux[i - B[j]] >= 0) {
+                    aux[i] += aux[i - B[j]];
+                    if (aux[i] > LLONG_MAX) {
+                        aux[i] = LLONG_MAX;
+                        break; // Salir del bucle si se alcanza el límite superior
+                    }
+                } else {
+                    aux[i] = LLONG_MAX; // Asignar el límite superior si hay desbordamiento
+                    break; // Salir del bucle si se alcanza el límite superior
+                }
+            }
+        }
+    }
+    return aux[n];
+}
+
 
 
 /*  Algoritmo similar a la función FormasPD(), pero con leves modificaciones.
