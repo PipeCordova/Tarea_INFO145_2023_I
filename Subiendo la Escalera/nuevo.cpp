@@ -5,7 +5,7 @@
 #include <ctime> // Para cambiar la semilla y medir tiempo
 #include <climits> // Para usar LLONG_MAX
 #define FB 1 // 1 para mostrar la solución por Fuerza Bruta, 0 para no mostarla
-#define PD 1 // 1 para mostrar la solución por Programación Dinámica, 0 para no mostarla
+#define PD 0 // 1 para mostrar la solución por Programación Dinámica, 0 para no mostarla
 using namespace std; // Para usar cout y no std::cout
 
 // Declaración de funciones a utilizar
@@ -76,12 +76,12 @@ int main(int argc, char* argv[]){
     cout << "==========================================" << endl;
 
     vector<int> formaCorta = formaMasCortaPD(n,k,potencias,rotos);
-    cout << "Largo del camino\t= " << formaCorta.size() - 1 << endl;
-    cout << "Camino a seguir\t\t= ";
     if(formaCorta.empty()){
         cout << "No existe camino posible!" << endl;
     }
     else{
+        cout << "Largo del camino\t= " << formaCorta.size() - 1 << endl;
+        cout << "Camino a seguir\t\t= ";
         for(int i = 1; i<formaCorta.size(); i++){
             cout << formaCorta[i] << " " ;
         }
