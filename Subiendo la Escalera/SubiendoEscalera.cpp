@@ -11,7 +11,7 @@ using namespace std; // Para usar cout y no std::cout
 // Declaración de funciones a utilizar
 void imprimeVector(vector<int> v);
 void generaRotos(int cant, int n, vector<int>& rotos);
-long long formasPD(int n, int k, vector<int>& B, vector<int>& rotos);
+unsigned long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos);
 int formasFB(int n, int k, vector<int>& B, vector<int>& rotos);
 vector<int> creaPotencias(int p, int n);
 vector<int> formaMasCortaPD(int n, int k, vector<int>& B, vector<int>& rotos);
@@ -121,8 +121,8 @@ int formasFB(int n, int k, vector<int>& B, vector<int>& rotos) {
     posibles para subir la escalera se vuelve extremadamente grande, ocasionando OverFlow.
     Aún siendo de tipo long long se genera OverFlow en ciertos casos.   */
 
-long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
-    vector<long long int> aux(n + 1, 0);
+unsigned long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos) {
+    vector<unsigned long long int> aux(n + 1, 0);
     aux[0] = 1; // Caso base: hay una forma de subir una escalera de longitud 0
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j < k; j++) {
