@@ -136,7 +136,8 @@ unsigned long long int formasPD(int n, int k, vector<int>& B, vector<int>& rotos
 
 
 /*  Algoritmo similar a la función FormasPD(), pero con leves modificaciones.
-    Este algoritmo basado en PD retorna un vector con el camino mas corto posible para subir la escalera.*/
+    Este algoritmo basado en PD retorna un vector con el camino mas corto posible para subir la escalera
+    Recordemos que esta implementacion no se considera en nuestro analisis.*/
 vector<int> formaMasCortaPD(int n, int k, vector<int>& B, vector<int>& rotos) {
     vector<long long> aux(n + 1, 0);
     vector<vector<int>> caminos(n + 1);
