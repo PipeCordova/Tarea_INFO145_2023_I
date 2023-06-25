@@ -51,10 +51,12 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     int costoMin = numeric_limits<int>::max();
+    cout << costoMin << endl;
     int besti = 0;
     int bestj = 0;
     for (int i = 0; i < Puertos.size(); ++i) {
         for (int j = 0; j < Islas.size(); ++j) {
+            // El problema de los negativos viene de islas[j]
             int costo = Puertos[i] + costoBarco(s->adj[i], G_prime[j]) + Islas[j];
             if (costo <= costoMin) {
                 costoMin = costo;
