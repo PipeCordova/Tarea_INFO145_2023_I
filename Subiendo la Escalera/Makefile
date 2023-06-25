@@ -1,6 +1,5 @@
 CC = g++
 CFLAGS = -std=c++17 -O3
-
 SOURCES = SubiendoEscalera.cpp
 EXECUTABLE = prog1
 
