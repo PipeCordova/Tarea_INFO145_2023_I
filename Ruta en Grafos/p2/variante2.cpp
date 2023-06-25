@@ -2,6 +2,7 @@
 #include <vector>
 #include <limits>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
 
@@ -10,12 +11,32 @@ struct Node {
     vector<Node*> adj;
 };
 
-int dijkstra(vector<Node*>& G, Node* s, Node* z, vector<vector<int>>& cost) {
-    // Implementa aquí tu función Dijkstra y devuelve el costo mínimo desde s a z
+int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
+    int n = G.size();
+    vector<int> dist(n, numeric_limits<int>::max());
+    vector<bool> visited(n, false);
+    dist[s->id] = 0;
+
+    for (int i = 0; i < n - 1; ++i) {
+        int u = -1;
+        for (int j = 0; j < n; ++j) {
+            if (!visited[j] && (u == -1 || dist[j] < dist[u]))
+                u = j;
+        }
+
+        visited[u] = true;
+        for (Node* v : G[u]->adj) {
+            int alt = dist[u] + cost[u][v->id];
+            if (alt < dist[v->id])
+                dist[v->id] = alt;
+        }
+    }
+
+    return dist[fin->id];
 }
 
 int costoBarco(Node* p, Node* q) {
-    // Implementa aquí tu función costoBarco y devuelve el costo de ir de p a q
+    return rand()%100;
 }
 
 pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z) {
@@ -43,4 +64,61 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
         }
     }
     return make_pair(costoMin, make_pair(besti, bestj));
+}
+
+int main() {
+    srand(time(0));
+
+    // Crea los nodos del grafo
+    Node* A = new Node{0};
+    Node* B = new Node{1};
+    Node* C = new Node{2};
+    Node* D = new Node{3};
+    Node* E = new Node{4};
+    Node* F = new Node{5};
+
+    // Crea las aristas del grafo
+    A->adj = {B, C};
+    B->adj = {A, C, D};
+    C->adj = {A, B, D, E};
+    D->adj = {B, C, E, F};
+    E->adj = {C, D, F};
+    F->adj = {D, E};
+
+    // Define los costos de las aristas
+    vector<vector<int>> cost = {
+        {0, 1, 3, numeric_limits<int>::max(), numeric_limits<int>::max(), numeric_limits<int>::max()},
+        {1, 0, 1, 2, numeric_limits<int>::max(), numeric_limits<int>::max()},
+        {3, 1, 0, 1, 5, numeric_limits<int>::max()},
+        {numeric_limits<int>::max(), 2, 1, 0, 2, 4},
+        {numeric_limits<int>::max(), numeric_limits<int>::max(), 5, 2, 0, 3},
+        {numeric_limits<int>::max(), numeric_limits<int>::max(), numeric_limits<int>::max(), 4, 3, 0}
+    };
+
+    // Llama a la función costoMinSZ para obtener el costo mínimo y las mejores opciones de nodos
+    vector<Node*> G = {A, B, C, D, E, F};
+    vector<Node*> G_prime = {D, E, F};
+    vector<vector<int>> cost_prime = {
+        {0, 2, numeric_limits<int>::max()},
+        {2, 0, 3},
+        {numeric_limits<int>::max(), 3, 0}
+    };
+    Node* s = A;
+    Node* z = F;
+    pair<int, pair<int, int>> result = costoMinSZ(G, cost, G_prime, cost_prime, s, z);
+
+    // Imprime los resultados
+    cout << "Costo mínimo: " << result.first << endl;
+    cout << "Mejor puerto: " << s->adj[result.second.first]->id << endl;
+    cout << "Mejor isla: " << G_prime[result.second.second]->id << endl;
+
+    // Libera la memoria
+    delete A;
+    delete B;
+    delete C;
+    delete D;
+    delete E;
+    delete F;
+
+    return 0;
 }
