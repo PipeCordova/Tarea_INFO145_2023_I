@@ -15,6 +15,6 @@ iii) Ejecución: En la consola, escriba el siguiente comando: "./prog1 n p r".
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario   
-Entregaremos el archivo SubiendoEscalera.cpp con ambas formas solicitadas, tanto la implementación de Fuerza Bruta (FB) como la implementación de Programación Dinámica (PD). De esta manera, podremos obtener conclusiones comparativas sobre los diferentes algoritmos utilizando la misma entrada. Por defecto, el programa mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe actualizar el valor en la línea 7.    
+Por defecto, el programa mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe actualizar el valor en la línea 7.    
 
 # Problema 2: Ruta en Grafos Mediante Algoritmos Greedy.  
