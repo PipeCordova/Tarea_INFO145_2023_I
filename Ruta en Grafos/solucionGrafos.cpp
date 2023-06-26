@@ -96,7 +96,7 @@ vi costoMinSZ(vvi& G, vvi& G_prima, int s, int z, int k, int m) {
         vi dist = dijkstra(grafo_prima, j);
         islas.push_back(dist[z]);
     }
-  
+
     int costoMin = INF;
     int besti = 0;
     int bestj = 0;
@@ -130,13 +130,13 @@ void imprimirMatrizAdyacencia(const vvi& matriz) {
 int main(int argc, char* argv[]) {
     srand(time(0)); // Inicializar semilla aleatoria
 
-     if(argc != 4 || atoi(argv[2]) >= atoi(argv[1])){
+    if(argc != 4 || atoi(argv[2]) >= atoi(argv[1])){
         if(argc != 4){
             cout << "¡¡ERROR!! Tiene que compilar ./prog2 n k m\n n = nodos del continente\n k = puertos del continende (k<n)\n m = nodos del archipiélago\n" << endl;
         }else{ // Obligamos que k < n --> Esto dice el enunciado.
             cout << "¡¡Debe cumplirse que k < n!!" << endl;
         }
-        return EXIT_FAILURE;
+        exit(EXIT_FAILURE);
     }
 
     int n = atoi(argv[1]);
@@ -166,5 +166,5 @@ int main(int argc, char* argv[]) {
     cout << "Puerto óptimo \t\t= p" << besti << endl;
     cout << "Isla óptima \t\t= q" << bestj << endl;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
