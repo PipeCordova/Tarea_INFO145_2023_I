@@ -1,3 +1,5 @@
+// Esto es una implementacion del algoritmo de Dijsktra.
+
 #include <iostream>
 #include <queue>
 #include <vector>
