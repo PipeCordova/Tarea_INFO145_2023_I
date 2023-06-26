@@ -1,8 +1,7 @@
 CC = g++
 CFLAGS = -std=c++17 -O3
-
 SOURCES = SolucionGrafos.cpp
-EXECUTABLE = prog3
+EXECUTABLE = prog2
 
 all: $(EXECUTABLE)
 
