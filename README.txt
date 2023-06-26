@@ -2,7 +2,7 @@
 
 # Problema 1: Subiendo La Escalera
 
-i) Compilación: Para compilar el archivo "SubiendoEscalera.cpp", abra la consola en el directorio donde se encuentra el archivo y ejecute el comando "make". Gracias al archivo "Makefile" proporcionado, este comando se encargará de compilar el código de manera automática, facilitando el proceso de compilación.  
+i) Compilación: Para compilar el archivo "SubiendoEscalera.cpp", abra la consola en el directorio donde se encuentra el archivo y ejecute el comando "make".    
 
 ii) Antes de ejecutar el programa, considere los siguientes valores: 
    - n: número de escalones.
