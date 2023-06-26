@@ -35,6 +35,6 @@ iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 Entregamos 3 códigos:
    - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos para que sirva como referencia a los demas archivos.
    
-   - variante.cpp → Nuestra primera versión a la solución del problema, el cual creemos que la lógica esta bien, pero nos daba un error de un posible Overflow, el cual esta comentado en el archivo. Creemos que es importante enviar este código a pesar del error. Si desea ejecutar este código, deberá hacerlo manual!!
+   - variante.cpp → Nuestra primera versión a la solución del problema, el cual creemos que la lógica esta bien, pero nos daba un error de negativos, el cual esta comentado en el archivo. Creemos que es importante enviar este código a pesar del error. Si desea ejecutar este código, deberá hacerlo manual!!
 
    - solucionGrafos.cpp → Luego del problema mencionado, decidimos crear otra solución basada en la anterior, la cual creemos que es la más cercana o posiblemente correcta. El Makefile proporcionado es para ejecutar este archivo.
