@@ -11,30 +11,6 @@ struct Node {
     vector<Node*> adj;
 };
 
-/*unsigned int dijkstra_prime(vector<Node*>& G_prime, Node* s, Node* fin, vector<vector<int>>& cost_prime) {
-    unsigned int m = G_prime.size();
-    vector<int> dist(m, numeric_limits<int>::max());
-    vector<bool> visited(m, false);
-    dist[s->id] = 0;
-
-    for (int i = 0; i < m - 1; ++i) {
-        int u = -1;
-        for (int j = 0; j < m; ++j) {
-            if (!visited[j] && (u == -1 || dist[j] < dist[u]))
-                u = j;
-        }
-
-        visited[u] = true;
-        for (Node* v : G_prime[u]->adj) {
-            unsigned alt = dist[u] + cost_prime[u][v->id];
-            if (alt < dist[v->id])
-                dist[v->id] = alt;
-        }
-    }
-
-    return dist[fin->id];
-}
-*/
 
 unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
     int n = G.size();
