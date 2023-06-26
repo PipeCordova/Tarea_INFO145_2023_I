@@ -18,20 +18,6 @@ const int INF = numeric_limits<int>::max();
 int costoBarco() {
     return 1 + rand() % 10; // Genera un número aleatorio entre 1 y 10
 }
-/*
-vvi generarMatrizAdyacencia(int n) {
-    vvi matrix(n, vi(n, -1));
-    for (int u = 0; u < n; ++u) {
-        for (int v = 0; v < n; ++v) {
-            if (u != v) {
-                int weight = rand() % 21; // Genera un número aleatorio entre 0 y 20
-                matrix[u][v] = weight;
-            }
-        }
-    }
-    return matrix;
-}
-*/
 
 vvi generarMatrizAdyacencia(int n) {
     vvi matrix(n, vi(n, -1));
@@ -142,22 +128,37 @@ void imprimirMatrizAdyacencia(const vvi& matrix) {
     cout << endl;
 }
 
-int main() {
-    srand(time(nullptr)); // Inicializar semilla aleatoria
+int main(int argc, char* argv[]) {
+    srand(0); // Inicializar semilla aleatoria
 
+     if(argc != 4 || atoi(argv[2]) >= atoi(argv[1])){
+        if(argc != 4){
+            cout << "¡¡ERROR!! Tiene que compilar ./prog3 n k m\n n = nodos del continente\n k = puertos del continende (k<n)\n m = nodos del archipiélago\n" << endl;
+        }else{ // Obligamos que k < n --> Esto dice el enunciado.
+            cout << "¡¡Debe cumplirse que k < n!!" << endl;
+        }
+        return EXIT_FAILURE;
+    }
+    cout << "¡¡Bienvenido Al Problema Ruta En Grafos Mediante Algoritmos Greedy!!" << endl;
+    int n = atoi(argv[1]);
+    int k = atoi(argv[2]);
+    int m = atoi(argv[3]);
+    int s = 0; //Ciudad de partida
+    int z = m; //Isla final
+/*
     int n = 4; // Número de ciudades
     int m = 3; // Número de islas habilitadas
     int s = 0; // Ciudad de partida
     int z = 2; // Isla de llegada
     int k = 2; // Número de puertos
-
+*/
     // Generar matriz de adyacencia G aleatoriamente
     vvi G = generarMatrizAdyacencia(n);
-    imprimirMatrizAdyacencia(G);
+    //imprimirMatrizAdyacencia(G);
 
     // Generar matriz de adyacencia G' aleatoriamente
     vvi G_prime = generarMatrizAdyacencia(m);
-    imprimirMatrizAdyacencia(G_prime);
+    //imprimirMatrizAdyacencia(G_prime);
 
     vector<int> resultado = costoMinSZ(G, G_prime, s, z, k, m);
     int costoMin = resultado[0];
