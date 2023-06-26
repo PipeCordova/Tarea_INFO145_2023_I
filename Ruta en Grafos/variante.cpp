@@ -14,9 +14,7 @@ struct Node {
 // Declaracion de funciones
 int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost);
 int costoBarco(Node* p, Node* q);
-// Ojo que esto es una funcion, debido a su largo se hizo salto de linea.
-pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, 
-vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z);
+pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z);
 
 
 // Inicio programa
