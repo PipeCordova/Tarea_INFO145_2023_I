@@ -97,7 +97,7 @@ vi costoMinSZ(vvi& G, vvi& G_prima, int s, int z, int k, int m) {
         islas.push_back(dist[z]);
     }
   
-    int costoMin = numeric_limits<int>::max();
+    int costoMin = INF;
     int besti = 0;
     int bestj = 0;
 
