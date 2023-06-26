@@ -9,7 +9,7 @@ ii) Antes de ejecutar el programa, considere los siguientes valores:
    - p: base de la potencia de los saltos permitidos.
    - r: número de escalones rotos.
 
-iii) Ejecución: En la consola, escriba el siguiente comando: "./prog1 n p r". 
+iii) Ejecución: En la consola, escriba: ./prog1 n p r 
    Asegúrate de ingresar valores válidos para n, p y r. Solo verificamos r < n, según el enunciado.
 
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
@@ -26,7 +26,7 @@ ii) Antes de ejecutar el programa, considere los siguientes valores:
    - k: puertos del continente.
    - m: nodos del archipiélago.
 
-iii) Ejecución: En la consola, escriba el siguiente comando: "./prog2 n k m". 
+iii) Ejecución: En la consola, escriba: ./prog2 n k m
    Asegúrate de ingresar valores válidos para n, p y r. Solo verificamos k < n, según el enunciado.
 
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
