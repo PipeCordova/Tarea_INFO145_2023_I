@@ -15,7 +15,7 @@ iii) Ejecución: En la consola, escriba el siguiente comando: "./prog1 n p r".
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario   
-Por defecto, el programa mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe cambiar el '0' por '1', en la línea 7.    
+Por defecto, el programa mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe cambiar el '0' por un '1', en la línea 7.    
 
 # Problema 2: Carpeta Ruta en Grafos.  
 
@@ -33,6 +33,6 @@ iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario
 Entregamos 3 códigos:
-   - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos para que sirva como referencia.
+   - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos para que sirva como referencia a los demas archivos.
    - variante.cpp → Nuestra primera versión a la solución del problema, el cual creemos que la lógica esta bien, pero nos daba un error de un posible Overflow el cual esta comentado en el archivo. Creemos que enviar este código es importante para recibir un feedback. 
    - solucionGrafos.cpp → Luego del problema mencionado, decidimos crear otra solución basada en la anterior, la cual creemos que es la más cercana. El Makefile proporcionado es para ejecutar este archivo.
