@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++17 -O3
-SOURCES = SubiendoEscalera.cpp
+SOURCES = subiendoEscalera.cpp
 EXECUTABLE = prog1
 
 all: $(EXECUTABLE)
