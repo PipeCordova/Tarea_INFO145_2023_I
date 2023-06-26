@@ -20,20 +20,20 @@ int costoBarco() {
 }
 
 vvi generarMatrizAdyacencia(int n) {
-    vvi matrix(n, vi(n, -1));
-    for (int u = 0; u < n; ++u) {
-        for (int v = 0; v < n; ++v) {
+    vvi matriz(n, vi(n, -1));
+    for (int u = 0; u < n; u++) {
+        for (int v = 0; v < n; v++) {
             if (u != v) {
-                int weight = rand() % 22 - 1; // Genera un número aleatorio entre -1 y 20
-                matrix[u][v] = weight;
+                int peso = rand() % 22 - 1; // Genera un número aleatorio entre -1 y 20
+                matriz[u][v] = peso;
             }
         }
     }
-    return matrix;
+    return matriz;
 }
 
-vi dijkstra(vvp& graph, int source) {
-    int n = graph.size();
+vi dijkstra(vvp& grafo, int source) {
+    int n = grafo.size();
     vi dist(n, INF);
     priority_queue<pii, vector<pii>, greater<pii>> pq;
     dist[source] = 0;
@@ -41,19 +41,19 @@ vi dijkstra(vvp& graph, int source) {
 
     while (!pq.empty()) {
         int u = pq.top().second;
-        int cost = pq.top().first;
+        int costo = pq.top().first;
         pq.pop();
 
-        if (cost > dist[u]) {
+        if (costo > dist[u]) {
             continue;
         }
 
-        for (pii neighbor : graph[u]) {
+        for (pii neighbor : grafo[u]) {
             int v = neighbor.first;
-            int weight = neighbor.second;
+            int peso = neighbor.second;
 
-            if (dist[u] + weight < dist[v]) {
-                dist[v] = dist[u] + weight;
+            if (dist[u] + peso < dist[v]) {
+                dist[v] = dist[u] + peso;
                 pq.push({dist[v], v});
             }
         }
@@ -62,39 +62,39 @@ vi dijkstra(vvp& graph, int source) {
     return dist;
 }
 
-vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, int s, int z, int k, int m) {
+vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int s, int z, int k, int m) {
     int n = G.size();
 
     // Construir grafo G en forma de lista de adyacencia
-    vvp graph(n);
-    for (int u = 0; u < n; ++u) {
-        for (int v = 0; v < n; ++v) {
+    vvp grafo(n);
+    for (int u = 0; u < n; u++) {
+        for (int v = 0; v < n; v++) {
             if (G[u][v] != -1) {
-                graph[u].push_back({v, G[u][v]});
+                grafo[u].push_back({v, G[u][v]});
             }
         }
     }
 
     // Ejecutar Dijkstra en el grafo G para encontrar las rutas más económicas desde s a cada puerto pi
-    vi ports = dijkstra(graph, s);
+    vi puertos = dijkstra(grafo, s);
 
     // Construir grafo G' en forma de lista de adyacencia
-    vvp graph_prime(m);
-    for (int u = 0; u < m; ++u) {
-        for (int v = 0; v < m; ++v) {
-            if (G_prime[u][v] != -1) {
-                graph_prime[u].push_back({v, G_prime[u][v]});
-                graph_prime[v].push_back({u, G_prime[u][v]});
+    vvp grafo_prima(m);
+    for (int u = 0; u < m; u++) {
+        for (int v = 0; v < m; v++) {
+            if (G_prima[u][v] != -1) {
+                grafo_prima[u].push_back({v, G_prima[u][v]});
+                grafo_prima[v].push_back({u, G_prima[u][v]});
             }
         }
     }
 
     // Ejecutar Dijkstra en el grafo G' para encontrar las rutas más económicas desde cada isla qj hasta z
     int t = log2(m);
-    vector<int> islands;
-    for (int j = 0; j <= t; ++j) {
-        vi dist = dijkstra(graph_prime, j);
-        islands.push_back(dist[z]);
+    vector<int> islas;
+    for (int j = 0; j <= t; j++) {
+        vi dist = dijkstra(grafo_prima, j);
+        islas.push_back(dist[z]);
     }
 
     int costoMin = numeric_limits<int>::max();
@@ -102,9 +102,9 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, int
     int bestj = 0;
 
     // Calcular el costo total de la ruta desde s hasta z para cada combinación de puertos e islas
-    for (int i = 1; i <= k; ++i) {
-        for (int j = 0; j <= t; ++j) {
-            int costo = ports[i] + costoBarco() + islands[j];
+    for (int i = 1; i <= k; i++) {
+        for (int j = 0; j <= t; j++) {
+            int costo = puertos[i] + costoBarco() + islas[j];
 
             if (costo <= costoMin) {
                 costoMin = costo;
@@ -117,11 +117,11 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, int
     return {costoMin, besti, bestj};
 }
 
-void imprimirMatrizAdyacencia(const vvi& matrix) {
-    int n = matrix.size();
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cout << matrix[i][j] << "\t";
+void imprimirMatrizAdyacencia(const vvi& matriz) {
+    int n = matriz.size();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matriz[i][j] << "\t";
         }
         cout << endl;
     }
@@ -139,7 +139,7 @@ int main(int argc, char* argv[]) {
         }
         return EXIT_FAILURE;
     }
-    
+
     int n = atoi(argv[1]);
     int k = atoi(argv[2]);
     int m = atoi(argv[3]);
@@ -157,10 +157,10 @@ int main(int argc, char* argv[]) {
     //imprimirMatrizAdyacencia(G);
 
     // Generar matriz de adyacencia G' aleatoriamente
-    vvi G_prime = generarMatrizAdyacencia(m);
-    //imprimirMatrizAdyacencia(G_prime);
+    vvi G_prima = generarMatrizAdyacencia(m);
+    //imprimirMatrizAdyacencia(G_prima);
 
-    vector<int> resultado = costoMinSZ(G, G_prime, s, z, k, m);
+    vector<int> resultado = costoMinSZ(G, G_prima, s, z, k, m);
     int costoMin = resultado[0];
     int besti = resultado[1];
     int bestj = resultado[2];
