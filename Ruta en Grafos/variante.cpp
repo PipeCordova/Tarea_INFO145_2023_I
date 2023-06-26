@@ -11,68 +11,15 @@ struct Node {
     vector<Node*> adj;
 };
 
-
-int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
-    int n = G.size();
-    vector<int> dist(n, -1);
-    vector<bool> visited(n, false);
-    dist[s->id] = 0;
-
-    for (int i = 0; i < n - 1; i++) {
-        int u = -1;
-        for (int j = 0; j < n; j++) {
-            if (!visited[j] && (u == -1 || dist[j] < dist[u]))
-                u = j;
-        }
-
-        visited[u] = true;
-        for (Node* v : G[u]->adj) {
-            int alt = dist[u] + cost[u][v->id];
-            if (alt < dist[v->id])
-                dist[v->id] = alt;
-        }
-    }
-
-    return dist[fin->id];
-}
+// Declaracion de funciones
+int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost);
+int costoBarco(Node* p, Node* q);
+// Ojo que esto es una funcion, debido a su largo se hizo salto de linea.
+pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, 
+vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z);
 
 
-int costoBarco(Node* p, Node* q) {
-    return rand()%10;
-}
-
-pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z) {
-    vector<int> Puertos;
-    for (Node* p : s->adj) {
-        Puertos.push_back(dijkstra(G, s, p, cost));
-    }
-    vector<long long int> Islas;
-    int m = G_prime.size();
-    for (int j = 0; j < floor(log2(m)); j++) {
-        Node* q = G_prime[j];
-        //cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
-        Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
-    }
-    //cout << "Islas size= "<<Islas.size()<<endl;
-    //cout << "islas[0]= "<<Islas[0]<<endl;  --> Aqui nos dimos cuenta del error!!
-    
-    int costoMin = numeric_limits<int>::max();
-    int besti = 0;
-    int bestj = 0;
-    for (int i = 0; i < Puertos.size(); i++) {
-        for (int j = 0; j < Islas.size(); j++) {
-            // El problema de los negativos viene de islas[j]
-            int costo = Puertos[i] + costoBarco(s->adj[i], G_prime[j]) + Islas[j];
-            if (costo <= costoMin) {
-                costoMin = costo;
-                besti = i;
-                bestj = j;
-            }
-        }
-    }
-    return make_pair(costoMin, make_pair(besti, bestj));
-}
-
+// Inicio programa
 int main() {
     srand(time(0));
 
@@ -120,7 +67,7 @@ int main() {
     cout << "Mejor puerto: " << s->adj[result.second.first]->id << endl;
     cout << "Mejor isla: " << G_prime[result.second.second]->id << endl;
 
-    // Libera la memoria
+    // Liberar la memoria
     delete A;
     delete B;
     delete C;
@@ -129,4 +76,67 @@ int main() {
     delete F;
 
     return 0;
+}
+
+int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
+    int n = G.size();
+    vector<int> dist(n, -1);
+    vector<bool> visited(n, false);
+    dist[s->id] = 0;
+
+    for (int i = 0; i < n - 1; i++) {
+        int u = -1;
+        for (int j = 0; j < n; j++) {
+            if (!visited[j] && (u == -1 || dist[j] < dist[u]))
+                u = j;
+        }
+
+        visited[u] = true;
+        for (Node* v : G[u]->adj) {
+            int alt = dist[u] + cost[u][v->id];
+            if (alt < dist[v->id])
+                dist[v->id] = alt;
+        }
+    }
+
+    return dist[fin->id];
+}
+
+
+int costoBarco(Node* p, Node* q) {
+    //int x = rand()%10;
+    //cout << p->id <<"--"<<x<<"->"<<q->id << endl;
+    return rand()%10;
+}
+
+pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z) {
+    vector<int> Puertos;
+    for (Node* p : s->adj) {
+        Puertos.push_back(dijkstra(G, s, p, cost));
+    }
+    vector<long long int> Islas;
+    int m = G_prime.size();
+    for (int j = 0; j < floor(log2(m)); j++) {
+        Node* q = G_prime[j];
+        //cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
+        Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
+    }
+    //cout << "Islas size= "<<Islas.size()<<endl;
+    //cout << "islas[0]= "<<Islas[0]<<endl;  --> Aqui esta el error!!, da overflow.
+    
+    int costoMin = numeric_limits<int>::max();
+    int besti = 0;
+    int bestj = 0;
+    for (int i = 0; i < Puertos.size(); i++) {
+        for (int j = 0; j < Islas.size(); j++) {
+            // El problema de los negativos viene de islas[j]
+            int costo = Puertos[i] + costoBarco(s->adj[i], G_prime[j]) + Islas[j];
+            if (costo <= costoMin) {
+                costoMin = costo;
+                besti = i;
+                bestj = j;
+            }
+        }
+    }
+    return make_pair(costoMin, make_pair(besti, bestj));
 }
