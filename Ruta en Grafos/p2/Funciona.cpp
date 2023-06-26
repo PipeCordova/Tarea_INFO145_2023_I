@@ -16,7 +16,7 @@ const int INF = numeric_limits<int>::max();
 
 
 int costoBarco() {
-    return 1 + rand() % 10; // Genera un número aleatorio entre 1 y 10
+    return rand() % 11 - 5; // Genera un número aleatorio entre -5 y 5
 }
 
 vvi generarMatrizAdyacencia(int n) {
@@ -24,7 +24,7 @@ vvi generarMatrizAdyacencia(int n) {
     for (int u = 0; u < n; u++) {
         for (int v = 0; v < n; v++) {
             if (u != v) {
-                int peso = rand() % 22 - 1; // Genera un número aleatorio entre -1 y 20
+                int peso = rand() % 32 - 1; // Genera un número aleatorio entre -1 y 20
                 matriz[u][v] = peso;
             }
         }
@@ -92,7 +92,7 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int
     // Ejecutar Dijkstra en el grafo G' para encontrar las rutas más económicas desde cada isla qj hasta z
     int t = log2(m);
     vector<int> islas;
-    for (int j = 0; j <= t; j++) {
+    for (int j = 0; j < t; j++) {
         vi dist = dijkstra(grafo_prima, j);
         islas.push_back(dist[z]);
     }
@@ -105,7 +105,6 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int
     for (int i = 1; i <= k; i++) {
         for (int j = 0; j <= t; j++) {
             int costo = puertos[i] + costoBarco() + islas[j];
-
             if (costo <= costoMin) {
                 costoMin = costo;
                 besti = i;
@@ -129,7 +128,7 @@ void imprimirMatrizAdyacencia(const vvi& matriz) {
 }
 
 int main(int argc, char* argv[]) {
-    srand(0); // Inicializar semilla aleatoria
+    srand(time(0)); // Inicializar semilla aleatoria
 
      if(argc != 4 || atoi(argv[2]) >= atoi(argv[1])){
         if(argc != 4){
