@@ -11,7 +11,32 @@ struct Node {
     vector<Node*> adj;
 };
 
-int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
+/*unsigned int dijkstra_prime(vector<Node*>& G_prime, Node* s, Node* fin, vector<vector<int>>& cost_prime) {
+    unsigned int m = G_prime.size();
+    vector<int> dist(m, numeric_limits<int>::max());
+    vector<bool> visited(m, false);
+    dist[s->id] = 0;
+
+    for (int i = 0; i < m - 1; ++i) {
+        int u = -1;
+        for (int j = 0; j < m; ++j) {
+            if (!visited[j] && (u == -1 || dist[j] < dist[u]))
+                u = j;
+        }
+
+        visited[u] = true;
+        for (Node* v : G_prime[u]->adj) {
+            unsigned alt = dist[u] + cost_prime[u][v->id];
+            if (alt < dist[v->id])
+                dist[v->id] = alt;
+        }
+    }
+
+    return dist[fin->id];
+}
+*/
+
+unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
     int n = G.size();
     vector<int> dist(n, numeric_limits<int>::max());
     vector<bool> visited(n, false);
@@ -26,7 +51,7 @@ int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
 
         visited[u] = true;
         for (Node* v : G[u]->adj) {
-            int alt = dist[u] + cost[u][v->id];
+            unsigned int alt = dist[u] + cost[u][v->id];
             if (alt < dist[v->id])
                 dist[v->id] = alt;
         }
@@ -46,13 +71,12 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     }
     vector<int> Islas;
     int m = G_prime.size();
-    for (int j = 0; j < log2(m); ++j) {
+    for (int j = 0; j < floor(log2(m)); ++j) {
         Node* q = G_prime[j];
-        cout << dijkstra(G_prime, q, z, cost_prime) << endl;
+        cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     int costoMin = numeric_limits<int>::max();
-    cout << costoMin << endl;
     int besti = 0;
     int bestj = 0;
     for (int i = 0; i < Puertos.size(); ++i) {
@@ -70,8 +94,9 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
 }
 
 int main() {
-    srand(time(0));
+    srand(0);
 
+    int max = numeric_limits<int>::max();
     // Crea los nodos del grafo
     Node* A = new Node{0};
     Node* B = new Node{1};
@@ -90,21 +115,21 @@ int main() {
 
     // Define los costos de las aristas
     vector<vector<int>> cost = {
-        {0, 1, 3, numeric_limits<int>::max(), numeric_limits<int>::max(), numeric_limits<int>::max()},
-        {1, 0, 1, 2, numeric_limits<int>::max(), numeric_limits<int>::max()},
-        {3, 1, 0, 1, 5, numeric_limits<int>::max()},
-        {numeric_limits<int>::max(), 2, 1, 0, 2, 4},
-        {numeric_limits<int>::max(), numeric_limits<int>::max(), 5, 2, 0, 3},
-        {numeric_limits<int>::max(), numeric_limits<int>::max(), numeric_limits<int>::max(), 4, 3, 0}
+        {0, 1, 3, max, max, max},
+        {1, 0, 1, 2, max, max},
+        {3, 1, 0, 1, 5, max},
+        {max, 2, 1, 0, 2, 4},
+        {max, max, 5, 2, 0, 3},
+        {max, max, max, 4, 3, 0}
     };
 
     // Llama a la función costoMinSZ para obtener el costo mínimo y las mejores opciones de nodos
     vector<Node*> G = {A, B, C, D, E, F};
     vector<Node*> G_prime = {D, E, F};
     vector<vector<int>> cost_prime = {
-        {0, 2, numeric_limits<int>::max()},
+        {0, 2, max},
         {2, 0, 3},
-        {numeric_limits<int>::max(), 3, 0}
+        {max, 3, 0}
     };
     Node* s = A;
     Node* z = F;
