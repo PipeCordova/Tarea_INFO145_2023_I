@@ -152,15 +152,19 @@ int main(int argc, char* argv[]) {
     // Generar matriz de adyacencia G' aleatoriamente
     vvi G_prima = generarMatrizAdyacencia(m);
     //imprimirMatrizAdyacencia(G_prima);
-
+    clock_t ti = clock();
     vi resultado = costoMinSZ(G, G_prima, s, z, k, m);
+    clock_t tf = clock();
+    double secs = static_cast<double>(tf-ti)/CLOCKS_PER_SEC;
+    cout << "\nTiempo de ejecución \t= " << secs << " segundos." << endl;
+
     int costoMin = resultado[0];
     int besti = resultado[1];
     int bestj = resultado[2];
 
-    cout << "Costo mínimo: " << costoMin << endl;
-    cout << "Puerto óptimo: p" << besti << endl;
-    cout << "Isla óptima: q" << bestj << endl;
+    cout << "Costo mínimo \t\t= " << costoMin << endl;
+    cout << "Puerto óptimo \t\t= p" << besti << endl;
+    cout << "Isla óptima \t\t= q" << bestj << endl;
 
     return 0;
 }
