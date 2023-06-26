@@ -54,7 +54,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     //cout << "Islas size= "<<Islas.size()<<endl;
-    //cout << "islas[0]= "<<Islas[0]<<endl;  
+    //cout << "islas[0]= "<<Islas[0]<<endl;  --> Aqui nos dimos cuenta del error!!
     
     int costoMin = numeric_limits<int>::max();
     int besti = 0;
