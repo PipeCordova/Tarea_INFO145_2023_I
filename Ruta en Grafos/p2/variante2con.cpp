@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const int INF = numeric_limits<int>::max();
+
 struct nodoGrafo {
     int id;
     vector<nodoGrafo*> adj;
@@ -37,9 +39,9 @@ typedef struct nodoGrafo Nodo;
 }
 */
 
-unsigned int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>& cost) {
+int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>& cost) {
     int n = G.size();
-    vector<int> dist(n, -1);
+    vector<int> dist(n, INF);
     vector<bool> visited(n, false);
     dist[s->id] = 0;
 
@@ -52,7 +54,7 @@ unsigned int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>&
 
         visited[u] = true;
         for (Nodo* v : G[u]->adj) {
-            unsigned int alt = dist[u] + cost[u][v->id];
+            int alt = dist[u] + cost[u][v->id];
             if (alt < dist[v->id])
                 dist[v->id] = alt;
         }
@@ -62,6 +64,7 @@ unsigned int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>&
 }
 
 int costoBarco(Nodo* p, Nodo* q) {
+    srand(time(nullptr));
     return rand()%10;
 }
 
@@ -78,7 +81,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Nodo*>& G, vector<vector<int>>& cost
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     
-    int costoMin = numeric_limits<int>::max();
+    int costoMin = INF;
     int besti = 0;
     int bestj = 0;
     for (int i = 0; i < Puertos.size(); i++) {
@@ -96,9 +99,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Nodo*>& G, vector<vector<int>>& cost
 }
 
 int main() {
-    srand(0);
-
-    int max = numeric_limits<int>::max();
+    int max = INF;
     // Crea los nodos del grafo
     Nodo* A = new Nodo{0};
     Nodo* B = new Nodo{1};
