@@ -61,7 +61,9 @@ unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>&
 }
 
 int costoBarco(Node* p, Node* q) {
-    return rand()%100;
+    int x = rand()%10;
+    cout << p->id <<"--"<<x<<"->"<<q->id << endl;
+    return x;
 }
 
 pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z) {
@@ -73,7 +75,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     int m = G_prime.size();
     for (int j = 0; j < floor(log2(m)); ++j) {
         Node* q = G_prime[j];
-        cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
+        //cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     int costoMin = numeric_limits<int>::max();
@@ -94,7 +96,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
 }
 
 int main() {
-    srand(0);
+    srand(time(0));
 
     int max = numeric_limits<int>::max();
     // Crea los nodos del grafo
