@@ -62,7 +62,7 @@ vi dijkstra(vvp& grafo, int source) {
     return dist;
 }
 
-vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int s, int z, int k, int m) {
+vi costoMinSZ(vvi& G, vvi& G_prima, int s, int z, int k, int m) {
     int n = G.size();
 
     // Construir grafo G en forma de lista de adyacencia
@@ -91,7 +91,7 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int
 
     // Ejecutar Dijkstra en el grafo G' para encontrar las rutas más económicas desde cada isla qj hasta z
     int t = log2(m);
-    vector<int> islas;
+    vi islas;
     for (int j = 0; j < t; j++) {
         vi dist = dijkstra(grafo_prima, j);
         islas.push_back(dist[z]);
@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
     vvi G_prima = generarMatrizAdyacencia(m);
     //imprimirMatrizAdyacencia(G_prima);
 
-    vector<int> resultado = costoMinSZ(G, G_prima, s, z, k, m);
+    vi resultado = costoMinSZ(G, G_prima, s, z, k, m);
     int costoMin = resultado[0];
     int besti = resultado[1];
     int bestj = resultado[2];
