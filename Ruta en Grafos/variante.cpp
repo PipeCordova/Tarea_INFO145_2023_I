@@ -18,9 +18,9 @@ int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
     vector<bool> visited(n, false);
     dist[s->id] = 0;
 
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int u = -1;
-        for (int j = 0; j < n; ++j) {
+        for (int j = 0; j < n; j++) {
             if (!visited[j] && (u == -1 || dist[j] < dist[u]))
                 u = j;
         }
@@ -38,8 +38,6 @@ int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
 
 
 int costoBarco(Node* p, Node* q) {
-    //int x = rand()%10;
-    //cout << p->id <<"--"<<x<<"->"<<q->id << endl;
     return rand()%10;
 }
 
@@ -50,7 +48,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     }
     vector<long long int> Islas;
     int m = G_prime.size();
-    for (int j = 0; j < floor(log2(m)); ++j) {
+    for (int j = 0; j < floor(log2(m)); j++) {
         Node* q = G_prime[j];
         //cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
@@ -61,8 +59,8 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     int costoMin = numeric_limits<int>::max();
     int besti = 0;
     int bestj = 0;
-    for (int i = 0; i < Puertos.size(); ++i) {
-        for (int j = 0; j < Islas.size(); ++j) {
+    for (int i = 0; i < Puertos.size(); i++) {
+        for (int j = 0; j < Islas.size(); j++) {
             // El problema de los negativos viene de islas[j]
             int costo = Puertos[i] + costoBarco(s->adj[i], G_prime[j]) + Islas[j];
             if (costo <= costoMin) {
