@@ -1,6 +1,6 @@
 # Instrucciones para ejecutar los códigos:
 
-# Problema 1: Subiendo La Escalera
+# Problema 1: Carpeta Subiendo La Escalera.
 
 i) Compilación: Para compilar el archivo "subiendoEscalera.cpp", abra la consola en el directorio donde se encuentra y ejecute el comando "make".  
 
@@ -17,4 +17,19 @@ iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 # Comentario   
 Por defecto, el programa mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe actualizar el valor en la línea 7.    
 
-# Problema 2: Ruta en Grafos Mediante Algoritmos Greedy.  
+# Problema 2: Carpeta Ruta en Grafos.  
+
+i) Compilación: Para compilar el archivo "solucionGrafos.cpp", abra la consola en el directorio donde se encuentra y ejecute el comando "make".  
+
+ii) Antes de ejecutar el programa, considere los siguientes valores:  
+   - n: nodos del continente.
+   - k: puertos del continente.
+   - m: nodos del archipiélago.
+
+iii) Ejecución: En la consola, escriba el siguiente comando: "./prog2 n k m". 
+   Asegúrate de ingresar valores válidos para n, p y r. Solo verificamos k < n, según el enunciado.
+
+iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
+
+# Comentario
+
