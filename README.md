@@ -32,4 +32,5 @@ iii) Ejecución: En la consola, escriba el siguiente comando: "./prog2 n k m".
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario
-
+Entregamos 3 códigos:
+   - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos en C++, el cual sirvio como referencia.
