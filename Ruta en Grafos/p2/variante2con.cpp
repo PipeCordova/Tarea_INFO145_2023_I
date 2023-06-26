@@ -39,7 +39,7 @@ typedef struct nodoGrafo Nodo;
 
 unsigned int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>& cost) {
     int n = G.size();
-    vector<int> dist(n, numeric_limits<int>::max());
+    vector<int> dist(n, -1);
     vector<bool> visited(n, false);
     dist[s->id] = 0;
 
@@ -62,7 +62,7 @@ unsigned int dijkstra(vector<Nodo*>& G, Nodo* s, Nodo* fin, vector<vector<int>>&
 }
 
 int costoBarco(Nodo* p, Nodo* q) {
-    return rand()%100;
+    return rand()%10;
 }
 
 pair<int, pair<int, int>> costoMinSZ(vector<Nodo*>& G, vector<vector<int>>& cost, vector<Nodo*>& G_prime, vector<vector<int>>& cost_prime, Nodo* s, Nodo* z) {
@@ -74,9 +74,10 @@ pair<int, pair<int, int>> costoMinSZ(vector<Nodo*>& G, vector<vector<int>>& cost
     int m = G_prime.size();
     for (int j = 0; j < floor(log2(m)); j++) {
         Nodo* q = G_prime[j];
-        cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
+        // cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
+    
     int costoMin = numeric_limits<int>::max();
     int besti = 0;
     int bestj = 0;
