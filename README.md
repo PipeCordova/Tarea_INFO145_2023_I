@@ -33,4 +33,5 @@ iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario
 Entregamos 3 códigos:
-   - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos en C++, el cual sirvio como referencia.
+   - Dijkstra.cpp → Algoritmo visto en clases de manera teórica, lo implementamos para que sirva como referencia.
+   - variante.cpp → Nuestra primera versión de la solución al problema, el cual 
