@@ -139,7 +139,7 @@ int main(int argc, char* argv[]) {
         }
         return EXIT_FAILURE;
     }
-    cout << "¡¡Bienvenido Al Problema Ruta En Grafos Mediante Algoritmos Greedy!!" << endl;
+    
     int n = atoi(argv[1]);
     int k = atoi(argv[2]);
     int m = atoi(argv[3]);
