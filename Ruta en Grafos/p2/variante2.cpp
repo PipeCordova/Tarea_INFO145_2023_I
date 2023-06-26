@@ -48,6 +48,7 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     int m = G_prime.size();
     for (int j = 0; j < log2(m); ++j) {
         Node* q = G_prime[j];
+        cout << dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
     int costoMin = numeric_limits<int>::max();
