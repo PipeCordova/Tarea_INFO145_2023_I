@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
 
      if(argc != 4 || atoi(argv[2]) >= atoi(argv[1])){
         if(argc != 4){
-            cout << "¡¡ERROR!! Tiene que compilar ./prog3 n k m\n n = nodos del continente\n k = puertos del continende (k<n)\n m = nodos del archipiélago\n" << endl;
+            cout << "¡¡ERROR!! Tiene que compilar ./prog2 n k m\n n = nodos del continente\n k = puertos del continende (k<n)\n m = nodos del archipiélago\n" << endl;
         }else{ // Obligamos que k < n --> Esto dice el enunciado.
             cout << "¡¡Debe cumplirse que k < n!!" << endl;
         }
