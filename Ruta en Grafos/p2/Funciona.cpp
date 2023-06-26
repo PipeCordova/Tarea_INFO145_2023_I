@@ -9,13 +9,41 @@ using namespace std;
 typedef pair<int, int> pii;
 typedef pair<int, pii> pipii;
 typedef vector<int> vi;
+typedef vector<vector<int>> vvi;
 typedef vector<vector<pii>> vvp;
 
 const int INF = numeric_limits<int>::max();
 
 
 int costoBarco() {
-    return 1+rand() % 11; // Genera un número aleatorio entre 1 y 10
+    return 1 + rand() % 10; // Genera un número aleatorio entre 1 y 10
+}
+/*
+vvi generarMatrizAdyacencia(int n) {
+    vvi matrix(n, vi(n, -1));
+    for (int u = 0; u < n; ++u) {
+        for (int v = 0; v < n; ++v) {
+            if (u != v) {
+                int weight = rand() % 21; // Genera un número aleatorio entre 0 y 20
+                matrix[u][v] = weight;
+            }
+        }
+    }
+    return matrix;
+}
+*/
+
+vvi generarMatrizAdyacencia(int n) {
+    vvi matrix(n, vi(n, -1));
+    for (int u = 0; u < n; ++u) {
+        for (int v = 0; v < n; ++v) {
+            if (u != v) {
+                int weight = rand() % 22 - 1; // Genera un número aleatorio entre -1 y 20
+                matrix[u][v] = weight;
+            }
+        }
+    }
+    return matrix;
 }
 
 vi dijkstra(vvp& graph, int source) {
@@ -48,7 +76,7 @@ vi dijkstra(vvp& graph, int source) {
     return dist;
 }
 
-vector<double> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, int s, int z, int k, int m) {
+vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, int s, int z, int k, int m) {
     int n = G.size();
 
     // Construir grafo G en forma de lista de adyacencia
@@ -83,14 +111,14 @@ vector<double> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, 
         islands.push_back(dist[z]);
     }
 
-    double costoMin = numeric_limits<double>::infinity();
+    int costoMin = numeric_limits<int>::max();
     int besti = 0;
     int bestj = 0;
 
     // Calcular el costo total de la ruta desde s hasta z para cada combinación de puertos e islas
     for (int i = 1; i <= k; ++i) {
         for (int j = 0; j <= t; ++j) {
-            double costo = ports[i] + costoBarco() + islands[j];
+            int costo = ports[i] + costoBarco() + islands[j];
 
             if (costo <= costoMin) {
                 costoMin = costo;
@@ -103,33 +131,36 @@ vector<double> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prime, 
     return {costoMin, besti, bestj};
 }
 
+void imprimirMatrizAdyacencia(const vvi& matrix) {
+    int n = matrix.size();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 
 int main() {
+    srand(time(nullptr)); // Inicializar semilla aleatoria
+
     int n = 4; // Número de ciudades
     int m = 3; // Número de islas habilitadas
     int s = 0; // Ciudad de partida
     int z = 2; // Isla de llegada
     int k = 2; // Número de puertos
 
-    // Grafo G (matriz de adyacencia)
-    vector<vector<int>> G = {
-        {-1, 10, -1, 20},
-        {-1, -1, 15, 10},
-        {-1, -1, -1, -1},
-        {-1, -1, -1, -1}
-    };
+    // Generar matriz de adyacencia G aleatoriamente
+    vvi G = generarMatrizAdyacencia(n);
+    imprimirMatrizAdyacencia(G);
 
-    // Grafo G' (matriz de adyacencia)
-    vector<vector<int>> G_prime = {
-        {-1, 5, -1},
-        {5, -1, 3},
-        {-1, 3, -1}
-    };
+    // Generar matriz de adyacencia G' aleatoriamente
+    vvi G_prime = generarMatrizAdyacencia(m);
+    imprimirMatrizAdyacencia(G_prime);
 
-    srand(time(nullptr)); // Inicializar semilla aleatoria
-
-    vector<double> resultado = costoMinSZ(G, G_prime, s, z, k, m);
-    double costoMin = resultado[0];
+    vector<int> resultado = costoMinSZ(G, G_prime, s, z, k, m);
+    int costoMin = resultado[0];
     int besti = resultado[1];
     int bestj = resultado[2];
 
