@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++17 -O3
 
-SOURCES = variante2.cpp
+SOURCES = Funciona.cpp
 EXECUTABLE = prog3
 
 all: $(EXECUTABLE)

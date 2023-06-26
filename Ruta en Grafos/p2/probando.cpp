@@ -4,13 +4,15 @@
 #include <limits>
 #include <stack>
 
+using namespace std;
+
 struct Node {
     int id;
-    double dist;
+    int dist;
     Node* anc;
-    std::vector<std::pair<Node*, double>> neighbors;
+    vector<pair<Node*, int>> neighbors;
 
-    Node(int id) : id(id), dist(std::numeric_limits<double>::infinity()), anc(nullptr) {}
+    Node(int id) : id(id), dist(std::numeric_limits<int>::max()), anc(nullptr) {}
 };
 
 struct CompareDist {
@@ -19,11 +21,15 @@ struct CompareDist {
     }
 };
 
-void DIJKSTRA(std::vector<Node*>& graph, Node* start, std::vector<Node*>& ports) {
-    std::priority_queue<Node*, std::vector<Node*>, CompareDist> pq;
+int costoBarco(Node* p, Node* q) {
+    return rand() % 10;
+}
 
-    for (Node* node : graph) {
-        node->dist = std::numeric_limits<double>::infinity();
+void DIJKSTRA1(vector<Node*>& continente, Node* start, vector<Node*>& puertos) {
+    priority_queue<Node*, std::vector<Node*>, CompareDist> pq;
+
+    for (Node* node : continente) {
+        node->dist = numeric_limits<int>::max();
         node->anc = nullptr;
     }
 
@@ -36,7 +42,7 @@ void DIJKSTRA(std::vector<Node*>& graph, Node* start, std::vector<Node*>& ports)
 
         for (const auto& neighbor : u->neighbors) {
             Node* v = neighbor.first;
-            double weight = neighbor.second;
+            int weight = neighbor.second;
 
             if (v->dist > u->dist + weight) {
                 v->dist = u->dist + weight;
@@ -47,32 +53,94 @@ void DIJKSTRA(std::vector<Node*>& graph, Node* start, std::vector<Node*>& ports)
     }
 
     // Imprimir las distancias mínimas y los recorridos a los puertos
-    for (Node* port : ports) {
-        std::cout << "Distancia mínima a Puerto " << port->id << ": " << port->dist << std::endl;
+    for (Node* puerto : puertos) {
+        cout << "Distancia mínima a Puerto " << puerto->id << ": " << puerto->dist << endl;
 
         // Obtener el recorrido
-        std::stack<Node*> path;
-        Node* curr = port;
+        stack<Node*> path;
+        Node* curr = puerto;
         while (curr != nullptr) {
             path.push(curr);
             curr = curr->anc;
         }
 
         // Imprimir el recorrido
-        std::cout << "Recorrido desde el nodo inicial al Puerto " << port->id << ": ";
+        cout << "Recorrido desde el nodo inicial al Puerto " << puerto->id << ": ";
         while (!path.empty()) {
-            std::cout << path.top()->id;
+            cout << path.top()->id;
             path.pop();
             if (!path.empty()) {
-                std::cout << " -> ";
+                cout << " -> ";
             }
         }
-        std::cout << std::endl << std::endl;
+        cout << endl << endl;
+    }
+}
+
+void DIJKSTRA(vector<Node*>& continente, Node* start, vector<Node*>& puertos) {
+    priority_queue<Node*, std::vector<Node*>, CompareDist> pq;
+
+    for (Node* node : continente) {
+        node->dist = numeric_limits<int>::max();
+        node->anc = nullptr;
+    }
+
+    start->dist = 0;
+    pq.push(start);
+
+    int minDistance = numeric_limits<int>::max();
+    int minCost = numeric_limits<int>::max();
+    Node* minPuerto = nullptr;
+
+    while (!pq.empty()) {
+        Node* u = pq.top();
+        pq.pop();
+
+        for (const auto& neighbor : u->neighbors) {
+            Node* v = neighbor.first;
+            int weight = neighbor.second;
+
+            if (v->dist > u->dist + weight) {
+                v->dist = u->dist + weight;
+                v->anc = u;
+                pq.push(v);
+
+                if (v->id == 4 || v->id == 5 || v->id == 6) { // Check if v is a port
+                    if (v->dist < minDistance) {
+                        minDistance = v->dist;
+                        minCost = v->dist; // Actualizamos el costo mínimo
+                        minPuerto = v;
+                    }
+                }
+            }
+        }
+    }
+
+    if (minPuerto != nullptr) {
+        stack<Node*> path;
+        Node* curr = minPuerto;
+        while (curr != nullptr) {
+            path.push(curr);
+            curr = curr->anc;
+        }
+
+        cout << "Camino mínimo desde el nodo 0 al Puerto " << minPuerto->id << "= ";
+        while (!path.empty()) {
+            cout << path.top()->id;
+            path.pop();
+            if (!path.empty()) {
+                cout << " -> ";
+            }
+        }
+        cout << endl;
+        cout << "Costo del camino mínimo: " << minCost << endl; // Mostramos el costo mínimo
+    } else {
+        cout << "No se encontró un puerto alcanzable desde el nodo 0." << endl;
     }
 }
 
 int main() {
-    // Crear los nodos del grafo
+    // Crear los nodos del continente
     Node* nodeA = new Node(0);
     Node* nodeB = new Node(1);
     Node* nodeC = new Node(2);
@@ -82,32 +150,37 @@ int main() {
     Node* nodeG = new Node(6);
 
     // Definir las conexiones y los pesos de las aristas
-    nodeA->neighbors.emplace_back(nodeB, 5.0);
-    nodeA->neighbors.emplace_back(nodeC, 3.0);
-    nodeB->neighbors.emplace_back(nodeD, 2.0);
-    nodeC->neighbors.emplace_back(nodeB, 1.0);
-    nodeC->neighbors.emplace_back(nodeD, 6.0);
-    nodeD->neighbors.emplace_back(nodeE, 4.0);
-    nodeD->neighbors.emplace_back(nodeF, 2.0);
-    nodeE->neighbors.emplace_back(nodeG, 3.0);
-    nodeF->neighbors.emplace_back(nodeG, 1.0);
+    nodeA->neighbors.emplace_back(nodeB, 5);
+    nodeA->neighbors.emplace_back(nodeC, 3);
+    nodeB->neighbors.emplace_back(nodeD, 2);
+    nodeC->neighbors.emplace_back(nodeB, 1);
+    nodeC->neighbors.emplace_back(nodeD, 6);
+    nodeD->neighbors.emplace_back(nodeE, 4);
+    nodeD->neighbors.emplace_back(nodeF, 2);
+    nodeE->neighbors.emplace_back(nodeG, 3);
+    nodeF->neighbors.emplace_back(nodeG, 1);
 
-    // Crear el grafo
-    std::vector<Node*> graph = {nodeA, nodeB, nodeC, nodeD, nodeE, nodeF, nodeG};
+    // Crear el continente
+    vector<Node*> continente = {nodeA, nodeB, nodeC, nodeD, nodeE, nodeF, nodeG};
 
     // Definir los puertos
-    std::vector<Node*> ports = {nodeE, nodeF, nodeG};
+    vector<Node*> puertos = {nodeE, nodeF, nodeG};
 
     // Nodo inicial
     Node* startNode = nodeA;
 
     // Ejecutar el algoritmo de Dijkstra
-    DIJKSTRA(graph, startNode, ports);
+    //este entrega los caminos mas economicos desde 0 hasta cada puerto
+    DIJKSTRA1(continente, startNode, puertos);
+
+    //este solo me da el camino mas economico desde 0 hasta un puerto
+    DIJKSTRA(continente, startNode, puertos);
 
     // Liberar memoria
-    for (Node* node : graph) {
+    for (Node* node : continente) {
         delete node;
     }
 
     return 0;
 }
+

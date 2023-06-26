@@ -12,9 +12,9 @@ struct Node {
 };
 
 
-unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
+int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
     int n = G.size();
-    vector<int> dist(n, numeric_limits<int>::max());
+    vector<int> dist(n, -1);
     vector<bool> visited(n, false);
     dist[s->id] = 0;
 
@@ -27,7 +27,7 @@ unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>&
 
         visited[u] = true;
         for (Node* v : G[u]->adj) {
-            unsigned int alt = dist[u] + cost[u][v->id];
+            int alt = dist[u] + cost[u][v->id];
             if (alt < dist[v->id])
                 dist[v->id] = alt;
         }
@@ -36,10 +36,11 @@ unsigned int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>&
     return dist[fin->id];
 }
 
+
 int costoBarco(Node* p, Node* q) {
-    int x = rand()%10;
-    cout << p->id <<"--"<<x<<"->"<<q->id << endl;
-    return x;
+    //int x = rand()%10;
+    //cout << p->id <<"--"<<x<<"->"<<q->id << endl;
+    return rand()%10;
 }
 
 pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost, vector<Node*>& G_prime, vector<vector<int>>& cost_prime, Node* s, Node* z) {
@@ -47,13 +48,16 @@ pair<int, pair<int, int>> costoMinSZ(vector<Node*>& G, vector<vector<int>>& cost
     for (Node* p : s->adj) {
         Puertos.push_back(dijkstra(G, s, p, cost));
     }
-    vector<int> Islas;
+    vector<long long int> Islas;
     int m = G_prime.size();
     for (int j = 0; j < floor(log2(m)); ++j) {
         Node* q = G_prime[j];
         //cout << "dijkstra(G_prime, q, z, cost_prime)= "<<dijkstra(G_prime, q, z, cost_prime) << endl;
         Islas.push_back(dijkstra(G_prime, q, z, cost_prime));
     }
+    //cout << "Islas size= "<<Islas.size()<<endl;
+    //cout << "islas[0]= "<<Islas[0]<<endl;  
+    
     int costoMin = numeric_limits<int>::max();
     int besti = 0;
     int bestj = 0;
