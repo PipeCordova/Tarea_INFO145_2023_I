@@ -96,7 +96,7 @@ vector<int> costoMinSZ(vector<vector<int>>& G, vector<vector<int>>& G_prima, int
         vi dist = dijkstra(grafo_prima, j);
         islas.push_back(dist[z]);
     }
-
+  
     int costoMin = numeric_limits<int>::max();
     int besti = 0;
     int bestj = 0;
@@ -144,13 +144,7 @@ int main(int argc, char* argv[]) {
     int m = atoi(argv[3]);
     int s = 0; //Ciudad de partida
     int z = m; //Isla final
-/*
-    int n = 4; // Número de ciudades
-    int m = 3; // Número de islas habilitadas
-    int s = 0; // Ciudad de partida
-    int z = 2; // Isla de llegada
-    int k = 2; // Número de puertos
-*/
+
     // Generar matriz de adyacencia G aleatoriamente
     vvi G = generarMatrizAdyacencia(n);
     //imprimirMatrizAdyacencia(G);
