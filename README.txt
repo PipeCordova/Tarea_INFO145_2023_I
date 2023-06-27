@@ -16,6 +16,7 @@ iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
 # Comentario   
    - graficos.ipynb → Archivo hecho en Jupyter Notebook para la creación de los gráficos que se ven en el informe.  
+
 Por defecto, el programa "subiendoEscalera.cpp" mostrará la solución para el algoritmo PD, si desea ver también la solución para FB, debe cambiar el '0' por un '1', en la línea 7. 
 
 # Problema 2: Carpeta Ruta en Grafos.  
