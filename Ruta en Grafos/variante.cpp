@@ -78,7 +78,7 @@ int main() {
 
 int dijkstra(vector<Node*>& G, Node* s, Node* fin, vector<vector<int>>& cost) {
     int n = G.size();
-    vector<int> dist(n, -1);
+    vector<int> dist(n, numeric_limits<int>::max());
     vector<bool> visited(n, false);
     dist[s->id] = 0;
 
