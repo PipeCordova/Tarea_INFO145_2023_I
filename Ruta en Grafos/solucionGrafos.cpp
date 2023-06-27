@@ -19,9 +19,11 @@ const int INF = numeric_limits<int>::max();
 // Declaracion de funciones
 int costoBarco();
 vvi generarMatrizAdyacencia(int n);
+vvi generarMatrizAdyacenciaNoDirigida(int n);
 vi dijkstra(vvp& grafo, int source);
 vi costoMinSZ(vvp& G, vvp& G_prima, int s, int z, int k, int m);
 void imprimirMatrizAdyacencia(const vvi& matriz);
+
 
 
 int main(int argc, char* argv[]){
@@ -44,7 +46,7 @@ int main(int argc, char* argv[]){
 
     // Generar matriz de adyacencia G aleatoriamente
     vvi G = generarMatrizAdyacencia(n);
-    //imprimirMatrizAdyacencia(G);
+    imprimirMatrizAdyacencia(G);
 
     // Construir grafo G en forma de lista de adyacencia
     vvp grafo(n);
@@ -57,8 +59,8 @@ int main(int argc, char* argv[]){
     }
 
     // Generar matriz de adyacencia G' aleatoriamente
-    vvi G_prima = generarMatrizAdyacencia(m);
-    //imprimirMatrizAdyacencia(G_prima);
+    vvi G_prima = generarMatrizAdyacenciaNoDirigida(m);
+    imprimirMatrizAdyacencia(G_prima);
     // Construir grafo G' en forma de lista de adyacencia
     vvp grafo_prima(m);
     for (int u = 0; u < m; u++){
@@ -100,6 +102,18 @@ vvi generarMatrizAdyacencia(int n){
                 int peso = rand() % 32 - 1; // Genera un número aleatorio entre -1 y 30
                 matriz[u][v] = peso;
             }
+        }
+    }
+    return matriz;
+}
+
+vvi generarMatrizAdyacenciaNoDirigida(int n){
+    vvi matriz(n, vi(n, -1));
+    for (int u = 0; u < n; u++){
+        for (int v = u + 1; v < n; v++){  // Iterar solo sobre la mitad superior o inferior de la matriz
+            int peso = rand() % 32 - 1; // Genera un número aleatorio entre -1 y 30
+            matriz[u][v] = peso;
+            matriz[v][u] = peso;  // Asignar el mismo peso en la posición opuesta de la matriz
         }
     }
     return matriz;
