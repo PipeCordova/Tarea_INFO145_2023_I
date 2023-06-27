@@ -27,7 +27,7 @@ ii) Antes de ejecutar el programa, considere los siguientes valores:
    - m: nodos del archipiélago.
 
 iii) Ejecución: En la consola, escriba: ./prog2 n k m
-   Asegúrate de ingresar valores válidos para n, p y r. Solo verificamos k < n, según el enunciado.
+   Asegúrate de ingresar valores válidos para n, k y m. Solo verificamos k < n, según el enunciado.
 
 iv) Programa en funcionamiento: El programa se iniciará y validará la entrada.
 
