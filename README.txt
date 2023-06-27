@@ -2,7 +2,7 @@
 
 # Problema 1: Carpeta Subiendo la Escalera.
 
-i) Compilación: Para compilar el archivo "subiendoEscalera.cpp", abra la consola en el directorio donde se encuentra y ejecute el comando "make".  
+i) Compilación: Para compilar el archivo "subiendoEscalera.cpp", abra la consola en el directorio correspondiente y ejecute el comando "make".  
 
 ii) Antes de ejecutar el programa, considere los siguientes valores: 
    - n: número de escalones.
@@ -19,7 +19,7 @@ Por defecto, el programa mostrará la solución para el algoritmo PD, si desea v
 
 # Problema 2: Carpeta Ruta en Grafos.  
 
-i) Compilación: Para compilar el archivo "solucionGrafos.cpp", abra la consola en el directorio donde se encuentra y ejecute el comando "make".  
+i) Compilación: Para compilar el archivo "solucionGrafos.cpp", abra la consola en el directorio correspondiente y ejecute el comando "make".  
 
 ii) Antes de ejecutar el programa, considere los siguientes valores:  
    - n: nodos del continente.
