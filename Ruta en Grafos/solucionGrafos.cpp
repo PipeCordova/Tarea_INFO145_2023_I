@@ -44,10 +44,10 @@ int main(int argc, char* argv[]){
     int s = 0; //Ciudad de partida
     int z = m; //Isla final
 
+    cout << "Generando matrices y grafos...\nEste proceso puede tardar..." << endl;
     // Generar matriz de adyacencia G aleatoriamente
     vvi G = generarMatrizAdyacencia(n);
-    imprimirMatrizAdyacencia(G);
-
+    //imprimirMatrizAdyacencia(G)
     // Construir grafo G en forma de lista de adyacencia
     vvp grafo(n);
     for (int u = 0; u < n; u++){
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]){
 
     // Generar matriz de adyacencia G' aleatoriamente
     vvi G_prima = generarMatrizAdyacenciaNoDirigida(m);
-    imprimirMatrizAdyacencia(G_prima);
+    //imprimirMatrizAdyacencia(G_prima);
     // Construir grafo G' en forma de lista de adyacencia
     vvp grafo_prima(m);
     for (int u = 0; u < m; u++){
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    cout << "Comenzo la medicion..."<<endl;
+    cout << "Fin creacion\n\nComenzo la medicion..."<<endl;
     clock_t ti = clock();
     vi resultado = costoMinSZ(grafo, grafo_prima, s, z, k, m);
     clock_t tf = clock();
