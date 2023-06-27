@@ -1,6 +1,6 @@
 # Instrucciones para ejecutar los códigos:
 
-# Problema 1: Carpeta Subiendo La Escalera.
+# Problema 1: Carpeta Subiendo la Escalera.
 
 i) Compilación: Para compilar el archivo "subiendoEscalera.cpp", abra la consola en el directorio donde se encuentra y ejecute el comando "make".  
 
