@@ -20,7 +20,7 @@ const int INF = numeric_limits<int>::max();
 int costoBarco();
 vvi generarMatrizAdyacencia(int n);
 vi dijkstra(vvp& grafo, int source);
-vi costoMinSZ(vvi& G, vvi& G_prima, int s, int z, int k, int m);
+vi costoMinSZ(vvp& G, vvp& G_prima, int s, int z, int k, int m);
 void imprimirMatrizAdyacencia(const vvi& matriz);
 
 
@@ -46,11 +46,33 @@ int main(int argc, char* argv[]){
     vvi G = generarMatrizAdyacencia(n);
     //imprimirMatrizAdyacencia(G);
 
+    // Construir grafo G en forma de lista de adyacencia
+    vvp grafo(n);
+    for (int u = 0; u < n; u++){
+        for (int v = 0; v < n; v++){
+            if (G[u][v] != -1){
+                grafo[u].push_back({v, G[u][v]});
+            }
+        }
+    }
+
     // Generar matriz de adyacencia G' aleatoriamente
     vvi G_prima = generarMatrizAdyacencia(m);
     //imprimirMatrizAdyacencia(G_prima);
+    // Construir grafo G' en forma de lista de adyacencia
+    vvp grafo_prima(m);
+    for (int u = 0; u < m; u++){
+        for (int v = 0; v < m; v++){
+            if (G_prima[u][v] != -1){
+                grafo_prima[u].push_back({v, G_prima[u][v]});
+                grafo_prima[v].push_back({u, G_prima[u][v]});
+            }
+        }
+    }
+
+    cout << "Comenzo la medicion..."<<endl;
     clock_t ti = clock();
-    vi resultado = costoMinSZ(G, G_prima, s, z, k, m);
+    vi resultado = costoMinSZ(grafo, grafo_prima, s, z, k, m);
     clock_t tf = clock();
     double secs = static_cast<double>(tf-ti)/CLOCKS_PER_SEC;
     cout << "\nTiempo de ejecución \t= " << secs << " segundos." << endl;
@@ -113,38 +135,16 @@ vi dijkstra(vvp& grafo, int source){
     return dist;
 }
 
-vi costoMinSZ(vvi& G, vvi& G_prima, int s, int z, int k, int m){
+vi costoMinSZ(vvp& G, vvp& G_prima, int s, int z, int k, int m){
     int n = G.size();
-
-    // Construir grafo G en forma de lista de adyacencia
-    vvp grafo(n);
-    for (int u = 0; u < n; u++){
-        for (int v = 0; v < n; v++){
-            if (G[u][v] != -1){
-                grafo[u].push_back({v, G[u][v]});
-            }
-        }
-    }
-
     // Ejecutar Dijkstra en el grafo G para encontrar las rutas más económicas desde s a cada puerto pi
-    vi puertos = dijkstra(grafo, s);
-
-    // Construir grafo G' en forma de lista de adyacencia
-    vvp grafo_prima(m);
-    for (int u = 0; u < m; u++){
-        for (int v = 0; v < m; v++){
-            if (G_prima[u][v] != -1){
-                grafo_prima[u].push_back({v, G_prima[u][v]});
-                grafo_prima[v].push_back({u, G_prima[u][v]});
-            }
-        }
-    }
+    vi puertos = dijkstra(G, s);
 
     // Ejecutar Dijkstra en el grafo G' para encontrar las rutas más económicas desde cada isla qj hasta z
     int t = log2(m);
     vi islas;
     for (int j = 0; j < t; j++){
-        vi dist = dijkstra(grafo_prima, j);
+        vi dist = dijkstra(G_prima, j);
         islas.push_back(dist[z]);
     }
 
