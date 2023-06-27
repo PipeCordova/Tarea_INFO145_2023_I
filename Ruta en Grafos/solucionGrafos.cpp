@@ -75,7 +75,7 @@ vvi generarMatrizAdyacencia(int n){
     for (int u = 0; u < n; u++){
         for (int v = 0; v < n; v++){
             if (u != v){
-                int peso = rand() % 32 - 1; // Genera un número aleatorio entre -1 y 20
+                int peso = rand() % 32 - 1; // Genera un número aleatorio entre -1 y 30
                 matriz[u][v] = peso;
             }
         }
