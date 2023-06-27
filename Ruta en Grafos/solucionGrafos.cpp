@@ -44,7 +44,7 @@ int main(int argc, char* argv[]){
     int s = 0; //Ciudad de partida
     int z = m; //Isla final
 
-    cout << "Generando matrices y grafos...\nEste proceso puede tardar..." << endl;
+    cout << "Generando matrices y gráfos...\nEste proceso puede tardar..." << endl;
     // Generar matriz de adyacencia G aleatoriamente
     vvi G = generarMatrizAdyacencia(n);
     //imprimirMatrizAdyacencia(G)
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    cout << "Fin creacion\n\nComenzo la medicion..."<<endl;
+    cout << "Fin creación\n\nComenzó la medición..."<<endl;
     clock_t ti = clock();
     vi resultado = costoMinSZ(grafo, grafo_prima, s, z, k, m);
     clock_t tf = clock();
