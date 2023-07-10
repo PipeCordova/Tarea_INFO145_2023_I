@@ -1,3 +1,5 @@
+# Nota: 6.5
+
 # Instrucciones para ejecutar los códigos:
 
 # Problema 1: Carpeta Subiendo la Escalera.
