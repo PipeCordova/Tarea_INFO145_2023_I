@@ -1,4 +1,4 @@
-# Nota: 6.5
+# Nota: 6.5  
 
 # Instrucciones para ejecutar los códigos:
 
